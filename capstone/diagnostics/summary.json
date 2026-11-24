@@ -1,0 +1,371 @@
+{
+  "cutoff": "2022-12-31",
+  "scored_first": "2011-02-01",
+  "scored_last": "2022-11-01",
+  "overall": [
+    {
+      "model": "Elastic Net",
+      "scope": "overall",
+      "group": "all",
+      "observations": 994,
+      "months": 142,
+      "r2_zero_pct": -2.36,
+      "rank_ic": 0.08,
+      "rank_ic_t_hac3": 1.36,
+      "valid_ic_months": 32,
+      "sign_hit_pct": 52.21,
+      "positive_forecasts_pct": 96.88
+    },
+    {
+      "model": "Random Forest",
+      "scope": "overall",
+      "group": "all",
+      "observations": 994,
+      "months": 142,
+      "r2_zero_pct": -6.23,
+      "rank_ic": -0.04,
+      "rank_ic_t_hac3": -1.13,
+      "valid_ic_months": 142,
+      "sign_hit_pct": 48.29,
+      "positive_forecasts_pct": 76.06
+    },
+    {
+      "model": "Gradient Boosting",
+      "scope": "overall",
+      "group": "all",
+      "observations": 994,
+      "months": 142,
+      "r2_zero_pct": -13.08,
+      "rank_ic": -0.05,
+      "rank_ic_t_hac3": -1.23,
+      "valid_ic_months": 142,
+      "sign_hit_pct": 46.38,
+      "positive_forecasts_pct": 71.13
+    },
+    {
+      "model": "Plain rule proxy",
+      "scope": "overall",
+      "group": "all",
+      "observations": 994,
+      "months": 142,
+      "r2_zero_pct": -8.03,
+      "rank_ic": 0.06,
+      "rank_ic_t_hac3": 1.13,
+      "valid_ic_months": 142,
+      "sign_hit_pct": 52.41,
+      "positive_forecasts_pct": 60.26
+    },
+    {
+      "model": "OLS",
+      "scope": "overall",
+      "group": "all",
+      "observations": 994,
+      "months": 142,
+      "r2_zero_pct": -6.77,
+      "rank_ic": -0.06,
+      "rank_ic_t_hac3": -1.26,
+      "valid_ic_months": 142,
+      "sign_hit_pct": 50.4,
+      "positive_forecasts_pct": 69.32,
+      "r2_target": "excess_return",
+      "auc": null,
+      "log_loss": null
+    },
+    {
+      "model": "Logistic Regression",
+      "scope": "overall",
+      "group": "all",
+      "observations": 994,
+      "months": 142,
+      "r2_zero_pct": 51.4,
+      "rank_ic": -0.06,
+      "rank_ic_t_hac3": -1.59,
+      "valid_ic_months": 142,
+      "sign_hit_pct": 48.69,
+      "positive_forecasts_pct": 76.66,
+      "r2_target": "binary_sign",
+      "auc": 0.45,
+      "log_loss": 0.71
+    },
+    {
+      "model": "MLP",
+      "scope": "overall",
+      "group": "all",
+      "observations": 994,
+      "months": 142,
+      "r2_zero_pct": -15.73,
+      "rank_ic": -0.07,
+      "rank_ic_t_hac3": -1.68,
+      "valid_ic_months": 142,
+      "sign_hit_pct": 45.98,
+      "positive_forecasts_pct": 62.88,
+      "r2_target": "excess_return",
+      "auc": null,
+      "log_loss": null
+    }
+  ],
+  "decisions": [
+    {
+      "model": "Elastic Net",
+      "refits": 143,
+      "positive_pct": 96.9,
+      "changed_sign_pct": 4.02,
+      "average_funds_held": 6.78,
+      "clustered_decisions": 17,
+      "convergence_warnings": 15
+    },
+    {
+      "model": "Random Forest",
+      "refits": 143,
+      "positive_pct": 76.12,
+      "changed_sign_pct": 20.72,
+      "average_funds_held": 5.33,
+      "clustered_decisions": 102,
+      "convergence_warnings": 0
+    },
+    {
+      "model": "Gradient Boosting",
+      "refits": 143,
+      "positive_pct": 71.23,
+      "changed_sign_pct": 29.88,
+      "average_funds_held": 4.99,
+      "clustered_decisions": 122,
+      "convergence_warnings": 0
+    }
+  ],
+  "stability": [
+    {
+      "model": "Elastic Net",
+      "adjacent_rank_correlation": 0.81,
+      "top_feature_unchanged_pct": 86.62,
+      "zero_coefficient_refits_pct": 76.92
+    },
+    {
+      "model": "Random Forest",
+      "adjacent_rank_correlation": 0.82,
+      "top_feature_unchanged_pct": 82.39,
+      "zero_coefficient_refits_pct": null
+    },
+    {
+      "model": "Gradient Boosting",
+      "adjacent_rank_correlation": 0.79,
+      "top_feature_unchanged_pct": 69.01,
+      "zero_coefficient_refits_pct": null
+    }
+  ],
+  "source_hashes": {
+    "alpha-lab/strategies/TM-017-06-elastic-net-trend/strategy.py": "231ee4c5173a01e187dc1712f543ae12d87717f5328dd8f730efbee48e723814",
+    "alpha-lab/strategies/TM-017-07-random-forest-trend/strategy.py": "e1697c1e19b0509f02f66d81767fc3d1649fe828f513a3cee4ff96932b14d611",
+    "alpha-lab/strategies/TM-017-08-boosted-trend/strategy.py": "f7c75a22e654cdf960a48774251da6d3410c89491a5105c26fd6f56237f4a530"
+  },
+  "monthly_ic_t": "Newey-West, fixed lag 3; descriptive post-run diagnostic",
+  "plain_rule_proxy": "252-session excess return / 12; sign exact, R2 scale is a mechanical convention",
+  "extension": {
+    "forecast_only": true,
+    "cutoff": "2022-12-31",
+    "settings": {
+      "OLS": "LinearRegression defaults; original rolling standardisation and target scaling",
+      "Logistic Regression": "L2, C=1.0, max_iter=1000; sign target; threshold 0.5",
+      "MLP": "hidden_layer_sizes=(16,8), alpha=10^-3, early_stopping=True, max_iter=500, random_state=0",
+      "permutation": "n_repeats=10, random_state=0; negative next-month MSE in return basis points squared"
+    },
+    "fit_info": [
+      {
+        "model": "OLS",
+        "refits": 143,
+        "convergence_warnings": 0
+      },
+      {
+        "model": "Logistic Regression",
+        "refits": 143,
+        "convergence_warnings": 0
+      },
+      {
+        "model": "MLP",
+        "refits": 143,
+        "convergence_warnings": 0
+      },
+      {
+        "model": "Random Forest",
+        "refits": 143,
+        "convergence_warnings": 0
+      },
+      {
+        "model": "Gradient Boosting",
+        "refits": 143,
+        "convergence_warnings": 0
+      }
+    ],
+    "logistic_r2": "binary-sign R2 versus all-zero sign forecast; not a return R2",
+    "permutation_summary": [
+      {
+        "model": "MLP",
+        "feature": "r21",
+        "mean_bps2": 4096.62,
+        "refit_sd_bps2": 58294.97,
+        "months": 142
+      },
+      {
+        "model": "MLP",
+        "feature": "r63",
+        "mean_bps2": 2647.91,
+        "refit_sd_bps2": 32630.47,
+        "months": 142
+      },
+      {
+        "model": "MLP",
+        "feature": "r126",
+        "mean_bps2": 3784.76,
+        "refit_sd_bps2": 30646.43,
+        "months": 142
+      },
+      {
+        "model": "MLP",
+        "feature": "r252",
+        "mean_bps2": -357.65,
+        "refit_sd_bps2": 34268.15,
+        "months": 142
+      },
+      {
+        "model": "MLP",
+        "feature": "r252x21",
+        "mean_bps2": -3846.08,
+        "refit_sd_bps2": 29435.92,
+        "months": 142
+      },
+      {
+        "model": "MLP",
+        "feature": "vol63",
+        "mean_bps2": -2504.31,
+        "refit_sd_bps2": 43662.73,
+        "months": 142
+      },
+      {
+        "model": "MLP",
+        "feature": "vol126",
+        "mean_bps2": 360.4,
+        "refit_sd_bps2": 34283.35,
+        "months": 142
+      },
+      {
+        "model": "MLP",
+        "feature": "ma200",
+        "mean_bps2": 11588.77,
+        "refit_sd_bps2": 58803.16,
+        "months": 142
+      },
+      {
+        "model": "Random Forest",
+        "feature": "r21",
+        "mean_bps2": -1741.79,
+        "refit_sd_bps2": 14365.2,
+        "months": 142
+      },
+      {
+        "model": "Random Forest",
+        "feature": "r63",
+        "mean_bps2": -1212.85,
+        "refit_sd_bps2": 27982.9,
+        "months": 142
+      },
+      {
+        "model": "Random Forest",
+        "feature": "r126",
+        "mean_bps2": -623.33,
+        "refit_sd_bps2": 4291.16,
+        "months": 142
+      },
+      {
+        "model": "Random Forest",
+        "feature": "r252",
+        "mean_bps2": -307.55,
+        "refit_sd_bps2": 6359.59,
+        "months": 142
+      },
+      {
+        "model": "Random Forest",
+        "feature": "r252x21",
+        "mean_bps2": -613.37,
+        "refit_sd_bps2": 6083.3,
+        "months": 142
+      },
+      {
+        "model": "Random Forest",
+        "feature": "vol63",
+        "mean_bps2": 1173.36,
+        "refit_sd_bps2": 8497.97,
+        "months": 142
+      },
+      {
+        "model": "Random Forest",
+        "feature": "vol126",
+        "mean_bps2": -388.12,
+        "refit_sd_bps2": 6972.01,
+        "months": 142
+      },
+      {
+        "model": "Random Forest",
+        "feature": "ma200",
+        "mean_bps2": -604.42,
+        "refit_sd_bps2": 5978.3,
+        "months": 142
+      },
+      {
+        "model": "Gradient Boosting",
+        "feature": "r21",
+        "mean_bps2": -2340.01,
+        "refit_sd_bps2": 25979.68,
+        "months": 142
+      },
+      {
+        "model": "Gradient Boosting",
+        "feature": "r63",
+        "mean_bps2": -1762.01,
+        "refit_sd_bps2": 46491.07,
+        "months": 142
+      },
+      {
+        "model": "Gradient Boosting",
+        "feature": "r126",
+        "mean_bps2": -1348.4,
+        "refit_sd_bps2": 11402.61,
+        "months": 142
+      },
+      {
+        "model": "Gradient Boosting",
+        "feature": "r252",
+        "mean_bps2": -353.13,
+        "refit_sd_bps2": 11709.17,
+        "months": 142
+      },
+      {
+        "model": "Gradient Boosting",
+        "feature": "r252x21",
+        "mean_bps2": -1469.0,
+        "refit_sd_bps2": 10850.39,
+        "months": 142
+      },
+      {
+        "model": "Gradient Boosting",
+        "feature": "vol63",
+        "mean_bps2": 1822.32,
+        "refit_sd_bps2": 15067.99,
+        "months": 142
+      },
+      {
+        "model": "Gradient Boosting",
+        "feature": "vol126",
+        "mean_bps2": -1080.45,
+        "refit_sd_bps2": 12713.25,
+        "months": 142
+      },
+      {
+        "model": "Gradient Boosting",
+        "feature": "ma200",
+        "mean_bps2": -750.57,
+        "refit_sd_bps2": 14735.81,
+        "months": 142
+      }
+    ]
+  }
+}

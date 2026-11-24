@@ -1,0 +1,374 @@
+{
+  "original_mac_commit": "2264f89b94e6786904c644f2f03ba8bed5adebdf",
+  "scope": "Documentary working copy; no market observations, virtual environment or Git history.",
+  "files": {
+    "alpha-lab/ML-CAPSTONE.md": {
+      "original_path": "alpha-lab/ML-CAPSTONE.md",
+      "sha256": "2e22501bf0944cd377cac436dfb6b369746babe188bf820df23afc37455c299a"
+    },
+    "alpha-lab/RUNBOOK.md": {
+      "original_path": "alpha-lab/RUNBOOK.md",
+      "sha256": "62427bfe88013005313e624360c0b45acef887a5bba76699e4b09c6621590d70"
+    },
+    "alpha-lab/data/manifest.json": {
+      "original_path": "alpha-lab/data/manifest.json",
+      "sha256": "3b665d85524ff471b66861be7f48509612311340a78085538ba26b47e8db06da"
+    },
+    "alpha-lab/strategies/MR-001-01-monthly-liquidity-reversal/build-plan.md": {
+      "original_path": "alpha-lab/strategies/MR-001-01-monthly-liquidity-reversal/build-plan.md",
+      "sha256": "7c9300da16261482b0bf11eb4fddbcad947f1c82fe99247d2e0d6fbbada6a49e"
+    },
+    "alpha-lab/strategies/MR-001-01-monthly-liquidity-reversal/card.yaml": {
+      "original_path": "alpha-lab/strategies/MR-001-01-monthly-liquidity-reversal/card.yaml",
+      "sha256": "e23d875cda44fdd21d054583fe22cb6371eb47428b3464600944e7d5ebf4cb60"
+    },
+    "alpha-lab/strategies/MR-001-01-monthly-liquidity-reversal/reasoning.md": {
+      "original_path": "alpha-lab/strategies/MR-001-01-monthly-liquidity-reversal/reasoning.md",
+      "sha256": "5832a9ec8ee26220672258e3991452fa22edc20f6d41e4cd04902ff26a675494"
+    },
+    "alpha-lab/strategies/MR-001-01-monthly-liquidity-reversal/report.ipynb": {
+      "original_path": "alpha-lab/strategies/MR-001-01-monthly-liquidity-reversal/report.ipynb",
+      "sha256": "9eb645eaf25f4c0fb82ab405fad0cc38a38e27694a2e1758c61bdbdc2f2d6d04"
+    },
+    "alpha-lab/strategies/MR-001-01-monthly-liquidity-reversal/strategy.py": {
+      "original_path": "alpha-lab/strategies/MR-001-01-monthly-liquidity-reversal/strategy.py",
+      "sha256": "8172225e24a913f92442dbc9fbcccb5ffd58a2d876694eafcd86ef348f9f0ba4"
+    },
+    "alpha-lab/strategies/MR-001-02-stress-conditioned-reversal/build-plan.md": {
+      "original_path": "alpha-lab/strategies/MR-001-02-stress-conditioned-reversal/build-plan.md",
+      "sha256": "b261d81ca9f3144511c702061c75f925d1f50972df8d4d2bbf0fd12a284893c2"
+    },
+    "alpha-lab/strategies/MR-001-02-stress-conditioned-reversal/card.yaml": {
+      "original_path": "alpha-lab/strategies/MR-001-02-stress-conditioned-reversal/card.yaml",
+      "sha256": "65ef044b39ef07298bd73fc420e3a3338db6c6c9984e17f93ded5b993c0bda0b"
+    },
+    "alpha-lab/strategies/MR-001-02-stress-conditioned-reversal/reasoning.md": {
+      "original_path": "alpha-lab/strategies/MR-001-02-stress-conditioned-reversal/reasoning.md",
+      "sha256": "b8bf18c6e78dce57317b96eda8c7e8397fb9ee00b990e6cdcff2205435fc7b2f"
+    },
+    "alpha-lab/strategies/MR-001-02-stress-conditioned-reversal/report.ipynb": {
+      "original_path": "alpha-lab/strategies/MR-001-02-stress-conditioned-reversal/report.ipynb",
+      "sha256": "2dd7801de2c3dcff402166d5756c68883ccfb632b939c32fa197642be9d0b171"
+    },
+    "alpha-lab/strategies/MR-001-02-stress-conditioned-reversal/strategy.py": {
+      "original_path": "alpha-lab/strategies/MR-001-02-stress-conditioned-reversal/strategy.py",
+      "sha256": "c12f6c1b9f54ea8ab7a68c5d9ec7e1317cb50ca06d7cea7c997e6e7f7e58b570"
+    },
+    "alpha-lab/strategies/TM-017-01-time-series-momentum/build-plan.md": {
+      "original_path": "alpha-lab/strategies/TM-017-01-time-series-momentum/build-plan.md",
+      "sha256": "59f7f6a5edf1056bf8ce0a175d015fa384434e2af3be2bc854b09ba4f0daf618"
+    },
+    "alpha-lab/strategies/TM-017-01-time-series-momentum/card.yaml": {
+      "original_path": "alpha-lab/strategies/TM-017-01-time-series-momentum/card.yaml",
+      "sha256": "35fab360845157b7980550ca38a4f101a89808fb6c288dfd6e15d29a7a004e1f"
+    },
+    "alpha-lab/strategies/TM-017-01-time-series-momentum/reasoning.md": {
+      "original_path": "alpha-lab/strategies/TM-017-01-time-series-momentum/reasoning.md",
+      "sha256": "2f11eca43a34f2c8047055ca1af62d5609cb3d9842a421fc170f078ea406067f"
+    },
+    "alpha-lab/strategies/TM-017-01-time-series-momentum/report.ipynb": {
+      "original_path": "alpha-lab/strategies/TM-017-01-time-series-momentum/report.ipynb",
+      "sha256": "cd4b2bae8b463dc586a2408ee1a9af3131e57ff807528fad61b6a9246a51ada7"
+    },
+    "alpha-lab/strategies/TM-017-01-time-series-momentum/strategy.py": {
+      "original_path": "alpha-lab/strategies/TM-017-01-time-series-momentum/strategy.py",
+      "sha256": "2b7b8b457b03679dd5b49826cb74856127f33a9fa297084cc936795135ed7f82"
+    },
+    "alpha-lab/strategies/TM-017-01-time-series-momentum/verdict.md": {
+      "original_path": "alpha-lab/strategies/TM-017-01-time-series-momentum/verdict.md",
+      "sha256": "d9e9c632b8bfb4462561c39318c34c266157f450a2bba91c0a1f0ef23540f6e1"
+    },
+    "alpha-lab/strategies/TM-017-06-elastic-net-trend/build-plan.md": {
+      "original_path": "alpha-lab/strategies/TM-017-06-elastic-net-trend/build-plan.md",
+      "sha256": "f9a3ef2c0022b6225a0cb4b469ed9e919616659ebd08210973a1807253f0b957"
+    },
+    "alpha-lab/strategies/TM-017-06-elastic-net-trend/card.yaml": {
+      "original_path": "alpha-lab/strategies/TM-017-06-elastic-net-trend/card.yaml",
+      "sha256": "66402d3d8c7c9079b231804f885d2196a4388b59366531cf0b7063e73d20290d"
+    },
+    "alpha-lab/strategies/TM-017-06-elastic-net-trend/reasoning.md": {
+      "original_path": "alpha-lab/strategies/TM-017-06-elastic-net-trend/reasoning.md",
+      "sha256": "8a062bf7d5a79aff6fe260a658052a3390b52a48c596ad4f6742a3a1d3f1da02"
+    },
+    "alpha-lab/strategies/TM-017-06-elastic-net-trend/report.ipynb": {
+      "original_path": "alpha-lab/strategies/TM-017-06-elastic-net-trend/report.ipynb",
+      "sha256": "bf319c32897edf6004c2ff0a7dc20ee942eb7546abd0180db7e0bd02eb01caf8"
+    },
+    "alpha-lab/strategies/TM-017-06-elastic-net-trend/strategy.py": {
+      "original_path": "alpha-lab/strategies/TM-017-06-elastic-net-trend/strategy.py",
+      "sha256": "231ee4c5173a01e187dc1712f543ae12d87717f5328dd8f730efbee48e723814"
+    },
+    "alpha-lab/strategies/TM-017-07-random-forest-trend/build-plan.md": {
+      "original_path": "alpha-lab/strategies/TM-017-07-random-forest-trend/build-plan.md",
+      "sha256": "bcf9260a7c40e2c237a7c838872fb0a7af18638b17e4177aecc0e4c337363061"
+    },
+    "alpha-lab/strategies/TM-017-07-random-forest-trend/card.yaml": {
+      "original_path": "alpha-lab/strategies/TM-017-07-random-forest-trend/card.yaml",
+      "sha256": "b2f894b7a6b14410c71a0965598da42b112b7636a07279c9dc9ecf39bd1458a1"
+    },
+    "alpha-lab/strategies/TM-017-07-random-forest-trend/reasoning.md": {
+      "original_path": "alpha-lab/strategies/TM-017-07-random-forest-trend/reasoning.md",
+      "sha256": "9b535e78bfaaac2a7ad63634b270c45607282da533bd82e2dd443aa46ae3d05d"
+    },
+    "alpha-lab/strategies/TM-017-07-random-forest-trend/report.ipynb": {
+      "original_path": "alpha-lab/strategies/TM-017-07-random-forest-trend/report.ipynb",
+      "sha256": "2aae4555ccc3d41a9c16f669f9d3db77effb8ae165e92b98e5b2cb1df268b853"
+    },
+    "alpha-lab/strategies/TM-017-07-random-forest-trend/strategy.py": {
+      "original_path": "alpha-lab/strategies/TM-017-07-random-forest-trend/strategy.py",
+      "sha256": "e1697c1e19b0509f02f66d81767fc3d1649fe828f513a3cee4ff96932b14d611"
+    },
+    "alpha-lab/strategies/TM-017-08-boosted-trend/build-plan.md": {
+      "original_path": "alpha-lab/strategies/TM-017-08-boosted-trend/build-plan.md",
+      "sha256": "a8865cddd46bd9102de94cd6d9a60a9a6e45dd497a4f6fb324de5a3ae2d25590"
+    },
+    "alpha-lab/strategies/TM-017-08-boosted-trend/card.yaml": {
+      "original_path": "alpha-lab/strategies/TM-017-08-boosted-trend/card.yaml",
+      "sha256": "9effb6e7f376271b13017d3461848066c056880eb360fa58984271d822762e08"
+    },
+    "alpha-lab/strategies/TM-017-08-boosted-trend/reasoning.md": {
+      "original_path": "alpha-lab/strategies/TM-017-08-boosted-trend/reasoning.md",
+      "sha256": "d4f1c92ef6a1de50d95aae2bc785bfd377a9d5fdf7f06d1f7d18b738b58da0c3"
+    },
+    "alpha-lab/strategies/TM-017-08-boosted-trend/report.ipynb": {
+      "original_path": "alpha-lab/strategies/TM-017-08-boosted-trend/report.ipynb",
+      "sha256": "6a093ced8f327b4b5935a5612ba3dc871a7256446e72e491d710c29acd824c94"
+    },
+    "alpha-lab/strategies/TM-017-08-boosted-trend/strategy.py": {
+      "original_path": "alpha-lab/strategies/TM-017-08-boosted-trend/strategy.py",
+      "sha256": "f7c75a22e654cdf960a48774251da6d3410c89491a5105c26fd6f56237f4a530"
+    },
+    "alpha-lab/strategies/TM-017-09-volatility-weighted-trend/build-plan.md": {
+      "original_path": "alpha-lab/strategies/TM-017-09-volatility-weighted-trend/build-plan.md",
+      "sha256": "512c384ad4b5f4b9a2e31daa0103aab0aefd1090ed830bdba56d870eba9c23af"
+    },
+    "alpha-lab/strategies/TM-017-09-volatility-weighted-trend/card.yaml": {
+      "original_path": "alpha-lab/strategies/TM-017-09-volatility-weighted-trend/card.yaml",
+      "sha256": "88b400df82461861099afe3bbe0b10baf2dab72538277299ca90fde50e36149b"
+    },
+    "alpha-lab/strategies/TM-017-09-volatility-weighted-trend/reasoning.md": {
+      "original_path": "alpha-lab/strategies/TM-017-09-volatility-weighted-trend/reasoning.md",
+      "sha256": "a2c8cbfc16be75e53900dd66c8232a3a6c46dafaf30ca7552f76376fb0a84d09"
+    },
+    "alpha-lab/strategies/TM-017-09-volatility-weighted-trend/strategy.py": {
+      "original_path": "alpha-lab/strategies/TM-017-09-volatility-weighted-trend/strategy.py",
+      "sha256": "4696cc6dd36e2ecbce74b8c3814d3e8f61f0cf31c230b19c55f40dd1c44ce8c4"
+    },
+    "alpha-lab/strategies/TM-017-10-volatility-weighted-trend/build-plan.md": {
+      "original_path": "alpha-lab/strategies/TM-017-10-volatility-weighted-trend/build-plan.md",
+      "sha256": "01955001d2614c5d364089b6d94ac8b6ba940bf19ccd687c6b3e055442feaed5"
+    },
+    "alpha-lab/strategies/TM-017-10-volatility-weighted-trend/card.yaml": {
+      "original_path": "alpha-lab/strategies/TM-017-10-volatility-weighted-trend/card.yaml",
+      "sha256": "c9ead229899a19621cd32e8876b1668e63063a1bacacf0130b3db6d9ad674b21"
+    },
+    "alpha-lab/strategies/TM-017-10-volatility-weighted-trend/reasoning.md": {
+      "original_path": "alpha-lab/strategies/TM-017-10-volatility-weighted-trend/reasoning.md",
+      "sha256": "695acdf86f39071be2c7e1c5c7e5a41f663f472dc5154d7b8013d33b166a7dfb"
+    },
+    "alpha-lab/strategies/TM-017-10-volatility-weighted-trend/report.ipynb": {
+      "original_path": "alpha-lab/strategies/TM-017-10-volatility-weighted-trend/report.ipynb",
+      "sha256": "a6caeac4448c1ee3274f008816f34f4a2cb9da8bf548dfe229d881ddaceb9f79"
+    },
+    "alpha-lab/strategies/TM-017-10-volatility-weighted-trend/strategy.py": {
+      "original_path": "alpha-lab/strategies/TM-017-10-volatility-weighted-trend/strategy.py",
+      "sha256": "705b8a536abd6524c8c9ca149d36bd1266d0f4e8b1dfe9a64d38b209c07f2c01"
+    },
+    "capstone/README.md": {
+      "original_path": "capstone/README.md",
+      "sha256": "7ff4e478f48204116df0f54fade8a774d62fc925f17d9b2050d41bcdd2fae1e8"
+    },
+    "capstone/STOPPED.md": {
+      "original_path": "capstone/STOPPED.md",
+      "sha256": "43d9819e74a49df37ca2f87f95b04b4cc939f4939dcf4f8c71a722a1a2789db6"
+    },
+    "capstone/SUMMARY-FR.md": {
+      "original_path": "capstone/SUMMARY-FR.md",
+      "sha256": "53f1b0d86ff643950403b9b11ee3afcd5a8ef87e4834f69a923776325ca558e9"
+    },
+    "capstone/build_capstone.py": {
+      "original_path": "capstone/build_capstone.py",
+      "sha256": "ebd222e1778c8a0b91413bab3decf6133204e3e35f378b4726da75efb7ebeaf5"
+    },
+    "capstone/build_presentation.py": {
+      "original_path": "capstone/build_presentation.py",
+      "sha256": "e5ddcca867154d518bb3cbcc3128f20971b85cf81fecfc066054b6e656b58e59"
+    },
+    "capstone/defence-qa.md": {
+      "original_path": "capstone/defence-qa.md",
+      "sha256": "c5d5271959c0bb977d433845c9e3cebb0c38408a4f7b7cc42837a50bc4a06621"
+    },
+    "capstone/diagnostics/01-forecast-quality.png": {
+      "original_path": "capstone/diagnostics/01-forecast-quality.png",
+      "sha256": "f51b94cbacddd29054e70d6afec0a0248c6e45193ff89c2a6f8f2e7294d6566f"
+    },
+    "capstone/diagnostics/02-yearly-accuracy.png": {
+      "original_path": "capstone/diagnostics/02-yearly-accuracy.png",
+      "sha256": "40b9b4b2c5d9930f552cb46090947809264d426e7c759d6e7c5b901a68ab7921"
+    },
+    "capstone/diagnostics/03-elastic-net-coefficients.png": {
+      "original_path": "capstone/diagnostics/03-elastic-net-coefficients.png",
+      "sha256": "28efb6e8095b3d462f6a0521106c6c9eecc97b7f434c629bc07cf8b8cc6a038a"
+    },
+    "capstone/diagnostics/04-feature-importances.png": {
+      "original_path": "capstone/diagnostics/04-feature-importances.png",
+      "sha256": "277c9000a574b62a1ba0e406c4fd12bbabc34062926f1ca16eefcb4a57bc05e9"
+    },
+    "capstone/diagnostics/05-decision-behaviour.png": {
+      "original_path": "capstone/diagnostics/05-decision-behaviour.png",
+      "sha256": "abf4f5d297e1a797e8164c3e25ed2c07d0ad5052065d39d0596968569f559f6e"
+    },
+    "capstone/diagnostics/06-permutation-importances.png": {
+      "original_path": "capstone/diagnostics/06-permutation-importances.png",
+      "sha256": "d72d9caeda5069573e85c2c4f2c83c93ea243dd24b6dc7dc112de31d0e3d86e6"
+    },
+    "capstone/diagnostics/07-tree-permutation-importance.png": {
+      "original_path": "capstone/diagnostics/07-tree-permutation-importance.png",
+      "sha256": "0713218cde1b709b050cc342446fdd267ef58621c2717d8fa77b66e29fe7a870"
+    },
+    "capstone/diagnostics/decision-behaviour.csv": {
+      "original_path": "capstone/diagnostics/decision-behaviour.csv",
+      "sha256": "97acdbbd6fc12690f49fabc2d7e823b3f3847953dce5fbd367add5eb6120e0b6"
+    },
+    "capstone/diagnostics/diagnostics.md": {
+      "original_path": "capstone/diagnostics/diagnostics.md",
+      "sha256": "3fc7290bf6a30c391d861cf4f659df53c897794dcfcdff35faad44c21eae7757"
+    },
+    "capstone/diagnostics/diagnostics.py": {
+      "original_path": "capstone/diagnostics/diagnostics.py",
+      "sha256": "3957dd3ec6ba286ae505f2567ca8b4a1a688d2883e517215b59369eef50582af"
+    },
+    "capstone/diagnostics/extended-forecast-observations.csv": {
+      "original_path": "capstone/diagnostics/extended-forecast-observations.csv",
+      "sha256": "7c1474ca5bb382060862f51b8945e7bfbe314036053854714747e4d2d7878874"
+    },
+    "capstone/diagnostics/fit-history.csv": {
+      "original_path": "capstone/diagnostics/fit-history.csv",
+      "sha256": "a407c454299c86e613a88696586fde7ff25769a05ab31924bac66654bf0113ae"
+    },
+    "capstone/diagnostics/forecast-metrics.csv": {
+      "original_path": "capstone/diagnostics/forecast-metrics.csv",
+      "sha256": "a48617d7e480fdeba60a44d1e89f534b06e67159f33134003fce8cb474de2169"
+    },
+    "capstone/diagnostics/forecast-observations.csv": {
+      "original_path": "capstone/diagnostics/forecast-observations.csv",
+      "sha256": "2570f6aa97822eb1262a707fc48a3a32eb516c6c7e16d7b83c36a0d718c25871"
+    },
+    "capstone/diagnostics/importance-stability.csv": {
+      "original_path": "capstone/diagnostics/importance-stability.csv",
+      "sha256": "640bbaf02050532611869610a599fe06836e2691ca22800768f16409b8408dc1"
+    },
+    "capstone/diagnostics/impurity-summary.csv": {
+      "original_path": "capstone/diagnostics/impurity-summary.csv",
+      "sha256": "27ef57ea032089f0e71f620df549a53a8e90d7fc95fdd275621ee5091f7bcee0"
+    },
+    "capstone/diagnostics/permutation-importances.csv": {
+      "original_path": "capstone/diagnostics/permutation-importances.csv",
+      "sha256": "5ccc53985b9b2f39350f1d8e76ca6dad674186b947098d95565a81d418ef1558"
+    },
+    "capstone/diagnostics/permutation-summary.csv": {
+      "original_path": "capstone/diagnostics/permutation-summary.csv",
+      "sha256": "a8c7585ace638f1f9a2764a5367c0eecdd6e9756cabc7e4037c5c4bcf71ec8b1"
+    },
+    "capstone/diagnostics/summary.json": {
+      "original_path": "capstone/diagnostics/summary.json",
+      "sha256": "e443c9b7379441de1d2381638789cd754e80de3f9dd6e1b9b73121941ca42851"
+    },
+    "capstone/figures/01-gates.png": {
+      "original_path": "capstone/figures/01-gates.png",
+      "sha256": "d34ab647ca7942ce43f6aa803c863c896af95ea1115a91a0cf3ee051cb8e5861"
+    },
+    "capstone/figures/01-gates.sources.md": {
+      "original_path": "capstone/figures/01-gates.sources.md",
+      "sha256": "c62e6d6f2d53c8ba7f38dceb68bdc75ba2f57d614b4832d03e1fa630ccba8ec6"
+    },
+    "capstone/figures/02-in-sample.png": {
+      "original_path": "capstone/figures/02-in-sample.png",
+      "sha256": "9ea3a9f9c9d59c835a329609c48e43dc5a8234f66c4c4b2bf9368a548b44a876"
+    },
+    "capstone/figures/02-in-sample.sources.md": {
+      "original_path": "capstone/figures/02-in-sample.sources.md",
+      "sha256": "d2d5c21f191096363807ba27f92fdfcf5533031c593b9f6bbacc54cd2d6fbca0"
+    },
+    "capstone/figures/03-placebos.png": {
+      "original_path": "capstone/figures/03-placebos.png",
+      "sha256": "30dc16cd1443e9d239953215e0db6f13ba3ec1a5f32a1df774d2a67a3559f267"
+    },
+    "capstone/figures/03-placebos.sources.md": {
+      "original_path": "capstone/figures/03-placebos.sources.md",
+      "sha256": "1a4aa8e584bbdeb0ed357d2bd41295577920960c07c61abaabfb22c134f92089"
+    },
+    "capstone/figures/04-holdout.png": {
+      "original_path": "capstone/figures/04-holdout.png",
+      "sha256": "72c27ec3501e21e3bb14aa01e3afefc0b985fe52c27e51294cdc5ce722d837f3"
+    },
+    "capstone/figures/04-holdout.sources.md": {
+      "original_path": "capstone/figures/04-holdout.sources.md",
+      "sha256": "11b961aef858a29500495e9ce33288e71e1c87b7ce58e5397a21d822a516f29b"
+    },
+    "capstone/local_plotting.py": {
+      "original_path": "capstone/local_plotting.py",
+      "sha256": "d71cd944446f856e08616e5a3efd118ca106f012c9be5f42af97b2060d5d6d73"
+    },
+    "capstone/manuscript.docx": {
+      "original_path": "capstone/manuscript.docx",
+      "sha256": "f13000a4693a41c5dfac9bf7721e0b26c9220b4f3edc0de4cafe25f6b3c28b04"
+    },
+    "capstone/manuscript.md": {
+      "original_path": "capstone/manuscript.md",
+      "sha256": "b6e6c48e16f07cf9d523dcea59fe42a4391d2e57cb2195f6c935036a04856a65"
+    },
+    "capstone/presentation-outline.md": {
+      "original_path": "capstone/presentation-outline.md",
+      "sha256": "719e40c3ccb6ba256be1bcaf4687d827bed1d2ece8a1c225da35537a81589f5c"
+    },
+    "capstone/presentation.pptx": {
+      "original_path": "capstone/presentation.pptx",
+      "sha256": "d117c1c50478f3579d090c2ee9c78735de7f9675424408d8849c8d71f179af62"
+    },
+    "capstone/results-notes.md": {
+      "original_path": "capstone/results-notes.md",
+      "sha256": "5f9a32ea8ecd52d6eca8264b314dd63c431c60ae5e6d07c8e8798800dc907a96"
+    },
+    "capstone/results.csv": {
+      "original_path": "capstone/results.csv",
+      "sha256": "8c6ad24e8a1bf5624c344cf816ccddeda0c6b77fbbefa737d4c0f94452c73497"
+    },
+    "capstone/source-hashes.json": {
+      "original_path": "capstone/source-hashes.json",
+      "sha256": "a86954b25b20b5b0e891f0d15bbf0a6a5ebcde7027458ef742113c507b07905e"
+    },
+    "capstone/verdict-drafts/MR-001-01-monthly-liquidity-reversal.md": {
+      "original_path": "capstone/verdict-drafts/MR-001-01-monthly-liquidity-reversal.md",
+      "sha256": "9b4a5865e5fe4d41a9ad7ad025b5ad8489797c98eac80b8675d5f85c3df91fba"
+    },
+    "capstone/verdict-drafts/MR-001-02-stress-conditioned-reversal.md": {
+      "original_path": "capstone/verdict-drafts/MR-001-02-stress-conditioned-reversal.md",
+      "sha256": "271f988ac615c5e6412b078c31e8326ce49723afa1f0da3314e29a7bf45be1ea"
+    },
+    "capstone/verdict-drafts/TM-017-06-elastic-net-trend.md": {
+      "original_path": "capstone/verdict-drafts/TM-017-06-elastic-net-trend.md",
+      "sha256": "985cc0af13746297677188db3be6957363fa2cd00d15f4e25b50fabbd7342b5f"
+    },
+    "capstone/verdict-drafts/TM-017-07-random-forest-trend.md": {
+      "original_path": "capstone/verdict-drafts/TM-017-07-random-forest-trend.md",
+      "sha256": "8e8eb96a0407f729341d5e7f21a852144bd9c6a266c8c2442f48389474721d96"
+    },
+    "capstone/verdict-drafts/TM-017-08-boosted-trend.md": {
+      "original_path": "capstone/verdict-drafts/TM-017-08-boosted-trend.md",
+      "sha256": "bc43d1d5aa6c92178b9894a95acddea62c1123f9108f9e586343922aac097199"
+    },
+    "capstone/verdict-drafts/TM-017-09-volatility-weighted-trend.md": {
+      "original_path": "capstone/verdict-drafts/TM-017-09-volatility-weighted-trend.md",
+      "sha256": "73cf1011c28a9c35f5fb587ec71cb44c2dce6382895c98636726d1df4114f7a7"
+    },
+    "capstone/verdict-drafts/TM-017-10-volatility-weighted-trend.md": {
+      "original_path": "capstone/verdict-drafts/TM-017-10-volatility-weighted-trend.md",
+      "sha256": "2d5372c35e10f23d7f9a690a9e4905535ae6e645915852f9b3c5a1a190a638f2"
+    },
+    "handoff/AGENTS-MAC-HISTORICAL.md": {
+      "original_path": "AGENTS.md",
+      "sha256": "88eaf3ea0cdf01d4d467c066ccbe91d6b063ec6c56b3c34725c1f9018e7d8fd5"
+    }
+  }
+}

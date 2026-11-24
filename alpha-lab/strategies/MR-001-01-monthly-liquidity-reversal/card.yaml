@@ -1,0 +1,35 @@
+id: MR-001-01-monthly-liquidity-reversal
+theory: MR-001
+parent: null
+mechanism: >
+  Investors who need to sell quickly can push prices below the level that patient capital would
+  accept. Providing liquidity after that selling pressure bears inventory and adverse-selection
+  risk; a subsequent partial reversal can compensate the buyer. This is MR-001's liquidity-provision
+  mechanism, distinct from intermediate-horizon trend continuation. The card tests its coarse
+  long-only implication on liquid funds, where the effect may be absent.
+prediction:
+  sign: positive (a fund that recently underperformed the bill earns a subsequent rebound)
+  size: a judgment, not a source estimate -- a net Sharpe at or above the lab's economic minimum of 0.40 and positive annual alpha over the same seven funds held always in equal parts
+universe: [SPY, EFA, EEM, IEF, TLT, GLD, DBC]
+horizon: months
+signal: >
+  On the first session of each month, compare each fund's return over lookback sessions, ending
+  at the session before the decision, with the compounded Treasury-bill return over exactly that
+  trailing interval. A tradable fund whose return is below the bill receives one seventh of the
+  portfolio; all other fund shares stay in cash. Missing full price history also leaves cash.
+  Hold between monthly decisions. No forecast is fitted, no assets are ranked and no short is taken.
+parameters:
+  lookback: sessions of the trailing return compared with the compounded bill before each decision
+variants:
+  - {lookback: 21}
+neighbours:
+  lookback: {25: [16, 26], 50: [10, 32]}
+choose: false
+memory: 32
+splits:
+  in_sample: [2005-01-01, 2022-12-31]
+  holdout: [2023-01-01, 2025-12-31]
+refuted_if: >
+  Buying each fund after it underperforms the bill earns nonpositive alpha over holding the same
+  seven funds always in equal parts; or the strategy fails the lab's required shifted-placebo
+  evidence; or its gains depend on one asset, cluster, episode, exact parameter or execution day.

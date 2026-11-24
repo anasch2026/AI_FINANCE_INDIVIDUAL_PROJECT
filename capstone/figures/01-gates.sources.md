@@ -1,0 +1,3 @@
+<!-- Source: alpha-lab/strategies/TM-017-01-time-series-momentum/report.ipynb; alpha-lab/strategies/TM-017-06-elastic-net-trend/report.ipynb; alpha-lab/strategies/TM-017-07-random-forest-trend/report.ipynb; alpha-lab/strategies/TM-017-08-boosted-trend/report.ipynb; alpha-lab/strategies/MR-001-01-monthly-liquidity-reversal/report.ipynb; alpha-lab/strategies/MR-001-02-stress-conditioned-reversal/report.ipynb; alpha-lab/strategies/TM-017-10-volatility-weighted-trend/report.ipynb; cell 24; TM-017-09 unrun status: capstone/STOPPED.md. -->
+
+Descriptive: unequal effective windows, thresholds v1 / v4. TM-017-09 unrun (see STOPPED.md).

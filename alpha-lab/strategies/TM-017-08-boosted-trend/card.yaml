@@ -1,0 +1,43 @@
+id: TM-017-08-boosted-trend
+theory: TM-017
+parent: null
+mechanism: >
+  Prices absorb news slowly and capital reallocates slowly, so an asset's own past returns predict
+  the direction of its next month (TM-017). The plain rule, TM-017-01, reads that through one feature
+  and a threshold fixed by hand; a model fitted on the recent past may read it through several
+  features of the same prices (returns over one, three, six and twelve months, volatility, distance to
+  the 200-session average), weighing them as the recent past did. If the mechanism is real but its
+  form shifts, a fitted forecast should time the same assets better than the fixed rule.
+prediction:
+  sign: positive (assets whose fitted forecast beats the bill earn more over the next month than those whose forecast does not)
+  size: a judgment, not drawn from a source's figure -- a Sharpe ratio net of costs at or above the plain rule's 0.50 on the same seven funds (TM-017-01), and a positive alpha over the seven held always in equal parts; with seven funds and about 140 monthly decisions after the first fit, the edge expected to be small, gate 3 likely to fail as it did for the rule
+universe: [SPY, EFA, EEM, IEF, TLT, GLD, DBC]
+horizon: months
+signal: >
+  On the first session of each month, gradient boosting of 150 trees of depth 2, learning rate 0.03, each tree fitted on 70% of the asset-months (the course's safety checks: subsampling and a small learning rate) is fitted on the last `window` months whose
+  outcome the close before had shown: each row one fund in one month, eight features read from the
+  fund's closes up to the session before the month (returns over 21, 63, 126 and 252 sessions, the
+  return from 252 to 21 sessions back, annualised volatility over 63 and 126 sessions, the close over
+  its 200-session average less one), the outcome the fund's return over the bill to the session
+  before the next month. The fitted model forecasts each fund's month ahead from the same features
+  read today; each fund whose forecast is above zero is held in a seventh of the portfolio, the
+  others leave their seventh in cash. No fit before `window` months of rows exist; the targets before
+  the first fit are none. Features are standardised and the model fitted on the window alone.
+parameters:
+  model: the model fitted, fixed for the card (gradient-boosting)
+  window: months of rows each fit reads, the most recent ones whose outcome is known
+variants:
+  - {model: gradient-boosting, window: 60}
+neighbours:
+  window: {25: [45, 75], 50: [30, 90]}
+choose: false
+memory: 2400
+splits:
+  in_sample: [2005-01-01, 2022-12-31]
+  holdout: [2023-01-01, 2025-12-31]
+refuted_if: >
+  Holding each fund only while its fitted forecast beats the bill earns no alpha over holding the same
+  seven funds always, in equal parts; or it beats no more of its placebos, shifted in time, than
+  chance; or its alpha is no larger than the plain rule's, TM-017-01, over the same sessions
+  (`lab.compare`), which would say that fitting adds nothing to the fixed rule; or its gains come from
+  one asset, one class or one episode.

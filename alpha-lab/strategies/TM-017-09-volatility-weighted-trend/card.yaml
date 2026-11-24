@@ -1,0 +1,35 @@
+id: TM-017-09-volatility-weighted-trend
+theory: TM-017
+parent: TM-017-01-time-series-momentum
+mechanism: >
+  Intermediate-horizon trend can reflect gradual information absorption. Moskowitz, Ooi and
+  Pedersen (2012) scale positions by volatility. The user's fixed inverse-volatility sizing
+  retains the plain entry rule and reduces the capital slot of more volatile funds, addressing
+  the concentration concern in the published plain rule without fitting another forecast.
+prediction:
+  sign: positive (trend timing with inverse-volatility capital slots adds benchmark-relative value)
+  size: a qualitative positive-alpha and concentration-control prediction; no numerical performance magnitude was specified by the user and none is selected
+universe: [SPY, EFA, EEM, IEF, TLT, GLD, DBC]
+horizon: months
+signal: >
+  On the first session of each month, using closes through the preceding session, hold a tradable
+  fund when its lookback-session return exceeds the compounded bill over that same interval.
+  Its weight is (1/vol_i) divided by the sum of (1/vol_j) over ALL tradable funds, held or not.
+  Volatility is the annualised sample standard deviation of daily log returns over the last 63
+  sessions, a fixed code window. Unheld funds' slots remain cash, so invested weight is at most one.
+parameters:
+  lookback: sessions of the fund return compared with the bill before the monthly decision
+variants:
+  - {lookback: 252}
+neighbours:
+  lookback: {25: [189, 315], 50: [126, 378]}
+choose: false
+memory: 400
+splits:
+  in_sample: [2005-01-01, 2022-12-31]
+  holdout: [2023-01-01, 2025-12-31]
+refuted_if: >
+  The specified allocation earns nonpositive alpha against the same funds held always in equal
+  parts, lacks the lab's shifted-placebo evidence, or fails the existing robustness and
+  concentration requirements. An undefined exact denominator is an implementation limitation,
+  not a financial refutation and not permission to change the locked rule.
