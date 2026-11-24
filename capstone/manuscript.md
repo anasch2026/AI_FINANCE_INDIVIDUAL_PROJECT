@@ -6,7 +6,7 @@ AI for Finance — Individual capstone
 
 ## Abstract
 
-I build a forecasting layer on Alpha Factory and ask whether ML signals survive where a fixed trend rule fails. The original Elastic Net, Random Forest and Gradient Boosting cards fail validation. I extend their pre-2023 forecast diagnostic with fixed OLS, logistic regression and a small neural network. Return-forecast accuracy remains weak; the classifier also gives weak sign discrimination. Following-month permutation importance often contradicts training impurity importance. Two reversal follow-ups fail economic edge. A volatility-weighted specification is skipped before any run, then repaired only through a new user-fixed card. The repaired TM-017-10 passes economic edge and robustness but first fails significance. I preserve every trial and the unrun specification, distinguishing forecast evaluation from portfolio validation. Earlier holdout exposure, accumulated testing and the missing historical reference commit prevent stronger confirmatory or paired-performance claims.
+I build a forecasting layer on Alpha Factory and ask whether ML signals survive where a fixed trend rule fails. The original Elastic Net, Random Forest and Gradient Boosting cards fail validation. I extend their pre-2023 forecast diagnostic with fixed OLS, logistic regression and a small neural network. Return-forecast accuracy remains weak; the classifier also gives weak sign discrimination. Following-month permutation importance often contradicts training impurity importance. Two reversal follow-ups fail economic edge. A volatility-weighted specification is skipped before any run and repaired only through a separately locked card, TM-017-10, which passes economic edge and robustness but fails significance and multiple testing. I preserve every trial and the unrun specification, distinguishing forecast evaluation from portfolio validation. Earlier holdout exposure, accumulated testing and the missing historical reference commit prevent stronger confirmatory or paired-performance claims.
 
 ## 1 Introduction
 
@@ -16,7 +16,7 @@ The starting point is Alpha Factory's published time-series momentum strategy, T
 
 I replace fixed entry decisions with learned forecasts while retaining the funds, monthly schedule and allocation. Elastic Net regularises a linear mapping; the ensembles allow nonlinear relationships. I test whether these price descriptions improve entry timing without assuming that flexibility creates investment value.
 
-After the original failures, I diagnose forecasts on development-era data without changing settings or computing portfolio returns. I then pre-specify unconditional reversal, stress-conditioned reversal and volatility-weighted trend, preserving the skipped specification and its separately locked repair.
+After the original failures, I diagnose forecasts on development-era data without changing settings or computing portfolio returns. I then pre-specify unconditional reversal, stress-conditioned reversal and volatility-weighted trend, preserving the skipped specification and its separately locked repair. My answer is negative for every implementation tested: no ML strategy or follow-up passes all seven gates.
 
 ## 2 Literature
 
@@ -24,7 +24,7 @@ Moskowitz, Ooi and Pedersen (2012) motivate the original economic mechanism. Tim
 
 Gu, Kelly and Xiu (2020) motivate flexible prediction methods and the forecast-evaluation perspective. Models can represent interactions and nonlinearities that a fixed linear relationship misses. I apply that idea to a much smaller setting: fund-level price histories rather than a rich panel of security characteristics. Their results do not establish an expected Sharpe for my application. I adopt R² relative to a zero-return forecast as a diagnostic because it asks whether prediction improves squared-error accuracy over a transparent benchmark. A negative value identifies failure on that criterion even when some predicted signs are correct.
 
-Harvey, Liu and Zhu (2016) address the consequences of extensive testing in finance. Searching through many explanations makes a selected historical result less persuasive. Alpha Factory addresses this problem with locked hypothesis cards and a registry that retains completed trials. I use those controls to separate a new hypothesis from a revision selected after observing its own performance. A modest search budget does not remove all researcher discretion, but it makes the sequence visible and prevents unlimited attempts from disappearing behind a reported winner.
+Harvey, Liu and Zhu (2016) address the consequences of extensive testing in finance. Searching through many explanations makes a selected historical result less persuasive. Alpha Factory addresses this problem with locked hypothesis cards and a registry that retains completed trials. I use those controls to separate a new hypothesis from a revision selected after observing its own performance. A modest search budget does not remove researcher discretion, but it keeps every attempt visible.
 
 Bailey and López de Prado (2014) provide a related basis for correcting selected backtest performance. The framework reports a deflated Sharpe diagnostic on benchmark-hedged returns and accounts for accumulated trials. I retain the framework's recorded judgments rather than recalculating a more favourable selection adjustment. This matters because the original ML models enter a registry containing earlier research, while the historical reference entered under a different trial history. Their gate outcomes are informative records, not a controlled experiment under identical historical conditions.
 
@@ -56,7 +56,7 @@ Elastic Net uses ElasticNetCV with L1 shares 0.10, 0.50 and 0.90, and a fixed gr
 
 ### 4.2 Validation battery
 
-I preserve the lab's seven gates and define each strategy's verdict as its first failure. The lab evaluates later gates even after an earlier failure. A later pass therefore adds a diagnostic observation; it does not reverse the verdict. Table 1 summarises the current battery used for the ML and reversal cards. The historical reference records threshold version 1, while these later cards record version 4.
+I preserve the lab's seven gates and define each strategy's verdict as its first failure. The lab evaluates later gates even after an earlier failure. A later pass therefore adds a diagnostic observation; it does not reverse the verdict. Table 1 summarises the current battery used for the ML, reversal and TM-017-10 cards. The historical reference records threshold version 1, while these later cards record version 4.
 
 Table 1. Validation gates and current thresholds.
 
@@ -70,9 +70,8 @@ Table 1. Validation gates and current thresholds.
 | 6 — Robustness | Parameter peaks, concentration, cluster dependence and timing | Median neighbour retention at least 70.00%; nearby and cluster retention at least 50.00%; single-asset profit share at most 30.00%; delay retention at least 70.00%; survivor correlation at most 0.70 when applicable |
 | 7 — Sealed holdout | Chronology and severe performance decay | Holdout Sharpe and alpha at or above their in-sample 10th-percentile floors; no rewritten positions, timing break or data problem |
 
-The diagnostic extension uses LinearRegression for OLS; LogisticRegression with L2, C=1.00 and max_iter=1000 for the return sign; and MLPRegressor with layers (16, 8), alpha=10^-3, early stopping, max_iter=500 and random_state=0. All retain the same features, pooling, completed labels, rolling window and training scaling. These additional estimators generate forecasts only, with no positions, portfolio return or registered trial. No setting is tuned to the diagnostic.
 
-The clustered count measures episodes of changed targets, not simply monthly refits. Reissuing the same target does not automatically create another decision. The placebo construction shifts the strategy's own weights in time. Its beaten percentage is not a conventional p-value. The holdout floors are lower-tail diagnostics derived from in-sample paths, not a requirement for positive alpha. These definitions explain several results below.
+The clustered count measures episodes of changed targets, not simply monthly refits. Reissuing the same target does not automatically create another decision. The placebo construction shifts the strategy's own weights in time. Its beaten percentage is not a conventional p-value. The holdout floors are lower-tail diagnostics derived from in-sample paths, not a requirement for positive alpha.
 
 ### 4.3 Forecast diagnostic and follow-up design
 
@@ -80,9 +79,11 @@ I execute each original strategy source unchanged and observe the estimators ret
 
 The plain rule produces a sign rather than a calibrated monthly return forecast. For R² context only, I divide its trailing 252-session excess return by twelve. This fixed mechanical proxy preserves its entry sign, but its R² depends on that scale. I do not present it as an estimated forecast or the rule's portfolio return. Its continuous signal supplies the rank correlation, avoiding the ties created by binary holdings.
 
+The diagnostic extension uses LinearRegression for OLS; LogisticRegression with L2, C=1.00 and max_iter=1000 for the return sign; and MLPRegressor with layers (16, 8), alpha=10^-3, early stopping, max_iter=500 and random_state=0. All retain the same features, pooling, completed labels, rolling window and training scaling. These additional estimators generate forecasts only, with no positions, portfolio return or registered trial. No setting is tuned to the diagnostic.
+
 After the diagnostic, I first draw MR-001-01. On each monthly decision it buys a fund when its trailing 21-session return falls below the bill over the same interval. Each qualifying fund receives one seventh; other shares remain cash. The conventional monthly horizon and zero excess-return boundary are fixed without testing this strategy's return. The prescribed neighbours are 16 and 26 sessions, then 10 and 32; memory is 32. There is one base variant and no fitted coefficient, volatility filter or selected threshold.
 
-For that first follow-up, I commit the card alone before its code, validate targets without returns, and run it once. I then commit its registry entry alone before its report. I disclose that the earlier holdout results were already known. The design uses only the in-sample diagnostic and literature, but the calendar holdout cannot become globally unseen again. This follow-up is an exploratory test, not an untouched independent confirmation.
+For that first follow-up, I commit the card alone before its code, validate targets without returns, and run it once. I then commit its registry entry alone before its report. I disclose that the earlier holdout results were already known. The design uses only the in-sample diagnostic and literature, but the calendar holdout cannot become globally unseen again. This follow-up is an exploratory test, not an untouched independent confirmation. Section 5.5 describes the two further rules and the repair, fixed after this first result.
 
 ## 5 Results
 
@@ -105,7 +106,7 @@ Table 2. Published strategy outcomes; unequal effective in-sample windows.
 
 ![Figure 1. Recorded gate outcomes; later passes do not reverse the first failure.](figures/01-gates.png)
 
-Elastic Net produces 17 clustered decisions against 30 required. Its sampled timing and memory checks find no breach, so its first failure is insufficient distinct decision evidence. Its negative alpha and low placebo rank also fail later requirements. The ensembles pass hygiene with 102 and 122 decisions, but their negative alphas and low Sharpes fail economic edge. All original ML cards additionally fail significance, multiple testing, stability and robustness. A complex model therefore does not merely lose at a demanding final correction; its published economic evidence is already unfavourable.
+Elastic Net produces 17 clustered decisions against 30 required. Its sampled timing and memory checks find no breach, so its first failure is insufficient distinct decision evidence. Its negative alpha and low placebo rank also fail later requirements. The ensembles pass hygiene with 102 and 122 decisions, but their negative alphas and low Sharpes fail economic edge. All original ML cards additionally fail significance, multiple testing, stability and robustness. The complex models therefore fail on economic evidence, not merely at a demanding final correction.
 
 ### 5.2 What the forecast diagnostic reveals
 
@@ -131,13 +132,13 @@ Elastic Net removes every slope in 76.92% of 143 monthly fits. Its prediction th
 
 ![Figure 3. Elastic Net coefficient histories, in return basis points per feature standard deviation.](diagnostics/03-elastic-net-coefficients.png)
 
-Random Forest holds an average of 5.33 funds, with adjacent sign changes of 20.72%; Gradient Boosting holds 4.99 with changes of 29.88%. Their adjacent importance-rank correlations are 0.82 and 0.79. Their persistent training importances do not imply forecast skill. Following-month permutation importance is the MSE increase after shuffling a feature, in return basis points squared, averaged over refits with ten repeats and random_state=0. For both ensembles, vol63 is the only feature with positive mean importance; most others are negative. The MLP has mixed signs and large refit dispersion. No feature subset or revised model is selected from these findings.
+Random Forest holds an average of 5.33 funds, with adjacent sign changes of 20.72%; Gradient Boosting holds 4.99 with changes of 29.88%. Their adjacent importance-rank correlations are 0.82 and 0.79. Their persistent training importances do not imply forecast skill. Following-month permutation importance is the MSE increase after shuffling a feature, in return basis points squared, averaged over refits with ten repeats and random_state=0. For both ensembles, vol63 is the only feature with positive mean importance; most others are negative. The MLP has mixed signs and large refit dispersion. These noisy descriptive means are neither significance tests nor causal effects. No feature subset or revised model is selected from these findings.
 
 ![Figure 4. Training impurity importance and following-month permutation importance, with refit dispersion.](diagnostics/06-permutation-importances.png)
 
-### 5.3 New hypothesis and recorded outcome
+### 5.3 First follow-up: liquidity reversal
 
-The new reversal card passes hygiene with 205 clustered decisions, no sampled timing or memory breaks and 17.83 evaluated years. It first fails economic edge: Sharpe is 0.24 against benchmark 0.45, and annual alpha is -1.07%. Doubled costs reduce Sharpe to 0.21 and alpha to -1.36%. The rule beats 37.10% of shifted placebos and has PSR 0.87, below the significance requirements. Its DSR is below 0.01 across 79 effective trials in a registry containing 86 trials.
+MR-001-01 passes hygiene with 205 clustered decisions, no sampled timing or memory breaks and 17.83 evaluated years. It first fails economic edge: Sharpe is 0.24 against benchmark 0.45, and annual alpha is -1.07%. Doubled costs reduce Sharpe to 0.21 and alpha to -1.36%. The rule beats 37.10% of shifted placebos and has PSR 0.87, below the significance requirements. Its DSR is below 0.01 across 79 effective trials in a registry containing 86 trials.
 
 Stability fails because only two calendar blocks have positive alpha and removing its best year leaves alpha -1.63%. Robustness also fails: GLD accounts for 32.88% of profit, above the allowed concentration. The holdout passes with Sharpe 0.90 and annual alpha 1.06%. I retain this failure without changing the rule or promoting its favourable holdout into validation. Later specifications are separately locked.
 
@@ -149,19 +150,19 @@ Elastic Net's holdout Sharpe of 0.91 exceeds the rule's 0.89 descriptively, yet 
 
 ![Figure 6. Published holdout diagnostics; none cancels an earlier gate failure.](figures/04-holdout.png)
 
-The same reasoning applies to the new rule's positive holdout alpha. It is a published result worth reporting, but it cannot offset a locked economic failure. I use the lab's recorded holdout outputs for these descriptions and compute no additional holdout forecast or return outside its runs.
+The same reasoning applies to MR-001-01's positive holdout alpha. It is a published result worth reporting, but it cannot offset a locked economic failure. I use the lab's recorded holdout outputs for these descriptions and compute no additional holdout forecast or return outside its runs.
 
 ### 5.5 Further pre-specified follow-ups and the repair
 
 I fixed both further rules before either ran, as capstone follow-ups 2 and 3. MR-001-02 activates reversal when SPY's 63-session realised volatility exceeds the median of its preceding 756 volatility observations. Those windows are fixed; only the return lookback and its prescribed neighbours vary. Memory is 830 sessions. The card passes hygiene with 92 clustered decisions, but fails gate 2: Sharpe 0.08 against benchmark 0.34, annual alpha -1.37% and 33.70% of shifted placebos beaten. GLD supplies 84.15% of profit, and a nearby parameter produces negative Sharpe retention. Its holdout passes with Sharpe 0.78 and alpha 1.04%. Stress conditioning does not validate this implementation; different effective windows prevent a paired improvement claim against unconditional reversal.
 
-TM-017-09 retains the 252-session entry rule and uses inverse 63-session volatility slots, normalised over all tradable funds, held or not, with memory 400. Its official preflight encounters an undefined denominator on 2006-03-01: DBC is tradable but lacks the full volatility history. Dropping that fund, imputing its volatility or changing the start would alter the user-fixed rule. I therefore skip its real run. TM-017-09 remains skipped at preflight, repaired only by the new TM-017-10; no result from 09 exists.
+TM-017-09 retains the 252-session entry rule and uses inverse 63-session volatility slots, normalised over all tradable funds, held or not, with memory 400. Its official preflight encounters an undefined denominator on 2006-03-01: DBC is tradable but lacks the full volatility history. Dropping that fund, imputing its volatility or changing the start would alter the rule as fixed. I therefore skip its real run. TM-017-09 remains skipped at preflight, repaired only by the new TM-017-10; no result from 09 exists.
 
-That stage adds only MR-001-02, whose report records 87 trials and 80 effective trials. I subsequently fix TM-017-10 with parent=null and one repair: funds with undefined 63-session volatility are not held or included in the denominator. The 252-session entry, fixed volatility window, prescribed neighbours and memory 400 remain unchanged.
+That stage adds only MR-001-02, whose report records 87 trials and 80 effective trials. I then fixed TM-017-10 with parent=null and one repair: funds with undefined 63-session volatility are not held or included in the denominator. The 252-session entry, fixed volatility window, prescribed neighbours and memory 400 remain unchanged.
 
 TM-017-10 passes hygiene with 203 clustered decisions. Its Sharpe is 0.61 against benchmark 0.41 and annual alpha 2.16%; gate 6 passes, with SPY's largest profit share 28.55%. It first fails gate 3 at 89.80% of placebos beaten against 90.00% required. DSR is 0.27 across 81 effective trials from 88 trials, and the blend fails stability. Holdout Sharpe is 0.79 with alpha -0.02%. I retain the improved recorded economics and robustness alongside the rejection, without a paired improvement claim.
 
-Four follow-up cards are specified overall; three have financial trials and 09 remains unrun. Each registered trial raises the selection burden. The forecast-only extension adds no portfolio trial or gate verdict.
+Four follow-up cards are specified overall; three have financial trials and 09 remains unrun. The forecast-only extension adds no portfolio trial or gate verdict.
 
 ## 6 Discussion
 
@@ -171,13 +172,13 @@ The first follow-up replaces an estimated pooled mean with an economically motiv
 
 Nagel (2012) reports that reversal strategies formed on diversified industry portfolios earn little unconditionally and become profitable mainly when the VIX is high. MR-001-01 trades diversified ETFs without conditioning on volatility, so its failure is consistent with that evidence rather than contrary to it. The later stress rule uses realised SPY volatility rather than VIX; its failure does not reject every liquidity-state hypothesis. TM-017-09 supplies no financial evidence. Its separately locked repair passes the concentration criterion but not significance or multiple testing; a favourable sizing result is not full validation.
 
-The permutation importances show 63-session volatility as the only feature with positive mean importance for both tree models, while TM-017-10, the best-performing strategy by recorded in-sample Sharpe, uses volatility for weighting rather than prediction. This is consistent but not causal evidence, since TM-017-10 was specified before the extended diagnostic.
+Permutation importance shows 63-session volatility as the only feature with positive mean importance for both tree models. TM-017-10, the best-performing strategy by recorded in-sample Sharpe, also uses volatility, but for weighting rather than prediction. The two observations are consistent, not causally linked: TM-017-10 was specified before the extended diagnostic, and the permutation estimates are noisy.
 
 TM-017-10 misses gate 3 by 0.20 percentage points (89.80% versus 90.00%), but also fails gate 4 (DSR 0.27 versus 0.90), so it is not a near-pass. Re-running or adjusting it would be the data snooping that the framework is built to prevent.
 
-The evidence separates three objects that can otherwise be confused: learning behaviour, forecast quality and portfolio performance. Coefficients and impurity importances describe fitted relationships. R² and IC compare predictions with later fund outcomes. The gates judge an implemented portfolio, including costs, exposure, dependence and selection. A persistent importance ranking can coexist with negative forecast R²; a positive Sharpe can coexist with negative alpha; a favourable holdout can coexist with an overall rejection. My application makes these distinctions observable.
+The evidence separates three objects that can otherwise be confused: learning behaviour, forecast quality and portfolio performance. Coefficients and impurity importances describe fitted relationships. R² and IC compare predictions with later fund outcomes. The gates judge an implemented portfolio, including costs, exposure, dependence and selection. A persistent importance ranking can coexist with negative forecast R²; a positive Sharpe can coexist with negative alpha; a favourable holdout can coexist with an overall rejection.
 
-A negative result remains useful without a winner. I preserve all four follow-up specifications, including the skipped card, and stop at the user-fixed scope. The contribution is an inspectable research application and a documented rejection of the tested investment propositions.
+A negative result remains useful without a winner. I preserve all four follow-up specifications, including the skipped card, and stop at the scope fixed in advance. The contribution is an inspectable research application and a documented rejection of the tested investment propositions.
 
 ## 7 Limitations
 
@@ -189,11 +190,11 @@ Elastic Net standardises over the whole outer training window before its interna
 
 The diagnostic is exploratory and follows observed failures. Its IC statistics use small cross-sections, and Elastic Net's valid IC months are a selected subset where forecasts vary. Per-fund rank correlations answer a different question from monthly cross-sectional IC. The rule proxy's R² depends on a mechanical scaling convention; logistic R² is reported as n/a. Permutations use small following-month cross-sections with correlated features, so signed importance is unstable and not causal. I report these definitions so that descriptive diagnostics are not mistaken for an independently specified significance test or a clean ranking of every signal.
 
-Cards TM-017-03 to TM-017-05 were retired unrun after an administrative locking error; TM-017-06 to TM-017-08 retain their hypotheses. I report both sets rather than hiding the earlier identifiers. I saw the completed 06–08 holdouts before MR-001-01, and its holdout before I fixed the two later rules. There are four follow-up cards, three executed and one skipped; TM-017-10 repairs an unrun specification after earlier holdouts were seen. Each additional registered trial raises the selection burden rather than providing a free attempt. Protecting subsequent design from new holdout calculations does not restore ignorance of earlier outputs; pre-specification alone cannot make this sequential research independently confirmatory.
+Cards TM-017-03 to TM-017-05 were retired unrun after an administrative locking error; TM-017-06 to TM-017-08 retain their hypotheses. I report both sets rather than hiding the earlier identifiers. I saw the completed 06–08 holdouts before MR-001-01, and its holdout before I fixed the two later rules. TM-017-10 repairs an unrun specification after earlier holdouts were seen, and each registered trial raises the selection burden. Protecting subsequent design from new holdout calculations does not restore ignorance of earlier outputs; pre-specification alone cannot make this sequential research independently confirmatory.
 
 ## 8 Conclusion
 
-The original ML strategies do not survive validation, and the fixed extension shows weak forecast evidence across regression and classification. The extension has no portfolio verdict. Both reversal follow-ups fail economic edge. TM-017-09 stays unrun; its repaired successor clears economics and robustness but first fails significance and also fails multiple testing. I retain that qualified progress without changing the cutoff or searching for another card. The contribution is a working application that distinguishes forecasts, investment value and cumulative validation, preserves failed and unrun specifications, and discloses prior holdout exposure.
+The answer to my research question is negative for these implementations. The original ML strategies do not survive validation, and the fixed extension shows weak forecast evidence across regression and classification. The extension has no portfolio verdict. Both reversal follow-ups fail economic edge. TM-017-09 stays unrun; its repaired successor clears economics and robustness but first fails significance and also fails multiple testing. I retain that qualified progress without changing the cutoff or searching for another card. The contribution is a working application that distinguishes forecasts, investment value and cumulative validation, preserves failed and unrun specifications, and discloses prior holdout exposure.
 
 ## References
 

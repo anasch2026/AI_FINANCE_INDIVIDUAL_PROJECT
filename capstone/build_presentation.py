@@ -129,15 +129,15 @@ def table(s,headers,values,y=2.0,height=3.4):
 
 s=slide('Do ML trend signals survive strict validation?',
         'Saved reports: TM-017-01/06/07/08/10; MR-001-01/02. TM-017-09 unrun. results-notes.md.',
-        'The original ML cards do not survive validation. The diagnostic now compares six fixed learners, including OLS, logistic regression and a small network, without adding a strategy or portfolio trial. Both reversal follow-ups fail economics. TM-017-09 remains skipped, while its separately fixed repair, TM-017-10, passes economics and robustness but first fails significance. I preserve that qualified progress, the original failures, the unrun specification and prior holdout exposure. Forecast evaluation and investment validation are distinct conclusions.')
+        'The original ML cards do not survive validation. The diagnostic now compares six fixed learners, including OLS, logistic regression and a small network, without adding a strategy or portfolio trial. Both reversal follow-ups fail economics. TM-017-09 remains skipped, while its separately fixed repair, TM-017-10, passes economics and robustness but fails significance and multiple testing. Forecast evaluation and investment validation are distinct conclusions.')
 text(s,'A complete research cycle',0.85,1.75,11.5,0.7,size=33,color=BLUE,bold=True)
-bullets(s,['Hypothesis → test → failure → diagnosis → new hypothesis → test',
+bullets(s,['Hypothesis → test → failure → diagnosis → new hypotheses → results',
            'No tested strategy passes all seven gates.',
            'Anas Chantah | Master in Finance | IE Business School'],y=3.0,size=23)
 
 s=slide('My contribution is the ML application and the research',
         'Prior work attribution: github.com/Sami-Andaloussi/alpha-factory. Disclosure: manuscript.md.',
-        'Alpha Factory is prior work I co-founded with Sami Andaloussi. My course contribution is the ML layer, diagnostic, follow-ups, experiments and analysis under my name. Claude and OpenAI Codex assisted with coding and drafting. Four follow-up cards are specified overall, three with financial runs and one skipped. The repair was fixed before its run and changes only undefined-volatility membership; 09 had no result to tune against. The additional forecast estimators create no portfolio trial. Completed cards and earlier numbers remain unchanged.')
+        'Alpha Factory is prior work I co-founded with Sami Andaloussi. My course contribution is the ML layer, diagnostic, follow-ups, experiments and analysis under my name. Claude and OpenAI Codex assisted with coding and drafting. Four follow-up cards are specified overall, three with financial runs and one skipped. The repair was fixed before its run and changes only undefined-volatility membership; 09 had no result to tune against. Completed cards and earlier numbers remain unchanged.')
 bullets(s,['Prior work: Alpha Factory, co-founded with Sami Andaloussi.',
            'New work: forecasts, diagnostic, hypothesis, experiments and analysis.',
            'AI assistance disclosed: Claude and OpenAI Codex.',
@@ -145,7 +145,7 @@ bullets(s,['Prior work: Alpha Factory, co-founded with Sami Andaloussi.',
 
 s=slide('The model changes the entry decision, not the allocation',
         'ML card.yaml and strategy.py files; report.ipynb cell 4; diagnostics/summary.json.',
-        'The funds are SPY, EFA, EEM, IEF, TLT, GLD and DBC. Each forecast uses eight lagged price features: several return horizons, skip-month momentum, volatility and moving-average distance. I pool fund-months, refit on sixty completed months, and hold a seventh per fund if its forecast exceeds zero. Elastic Net regularises a linear relationship; the forest and boosting models allow nonlinear relationships. Their settings were fixed before the original runs. The declared in-sample period is 2005 to 2022, but the actual ML performance window begins in February 2011. I preserve that distinction.')
+        'The funds are SPY, EFA, EEM, IEF, TLT, GLD and DBC. Each forecast uses eight lagged price features: several return horizons, skip-month momentum, volatility and moving-average distance. I pool fund-months, refit on sixty completed months, and hold a seventh per fund if its forecast exceeds zero. Elastic Net regularises a linear relationship; the forest and boosting models allow nonlinear relationships. Their settings were fixed before the original runs. The declared in-sample period is 2005 to 2022, but the actual ML performance window begins in February 2011.')
 bullets(s,['Seven funds; eight lagged price features.',
            'Rolling 60-month estimation; monthly refitting.',
            'Positive next-month excess-return forecast → hold one seventh.',
@@ -167,12 +167,12 @@ text(s,'Alpha is against passive holding. Effective evaluation windows differ.',
 
 s=slide('Forecast accuracy is weak before portfolio construction',
         'diagnostics/01-forecast-quality.png; forecast-metrics.csv; diagnostics.py.',
-        'The diagnostic cuts raw inputs before market assembly and uses no holdout observation. It computes no portfolio return. The common scored sample contains 994 fund-months. Return R squared is negative for all five return regressors, and the tree ensembles have negative mean monthly rank information coefficients. Logistic R squared is displayed as n/a, as explained on the next slide. Elastic Net has only thirty-two valid IC months because many forecasts are constant across funds. Its IC average therefore needs special care. The rule is a sign signal, so its R squared uses a declared mechanical monthly scaling proxy; that number is contextual rather than a calibrated model comparison.')
+        'The diagnostic cuts raw inputs before market assembly and uses no holdout observation or portfolio return. The common scored sample contains 994 fund-months. Return R squared is negative for all five return regressors, and the tree ensembles have negative mean monthly rank information coefficients. Logistic R squared is displayed as n/a, as explained on the next slide. Elastic Net has only thirty-two valid IC months because many forecasts are constant across funds, so its IC average needs care. The rule is a sign signal, so its R squared uses a declared mechanical monthly scaling proxy; that number is contextual rather than a calibrated model comparison.')
 chart(s,Path('diagnostics/01-forecast-quality.png'))
 
 s=slide('Six models, same verdict',
         'diagnostics/forecast-metrics.csv; diagnostics.py; all figures before 2023.',
-        'The shared scored sample and fixed protocol compare six learners and a rule proxy. OLS and MLP have negative return R squared, like the original regressors. Logistic regression predicts a probability of a positive return. R² is not defined for a binary target; the logistic model is judged by accuracy, AUC and log-loss. The classifier has weak accuracy, AUC and log-loss. The same forecast conclusion is weak evidence on this sample, not six failed trading cards. No new portfolio return, holdout evaluation or registry trial is produced by this extension.')
+        'The shared scored sample and fixed protocol compare six learners and a rule proxy. OLS and MLP have negative return R squared, like the original regressors. Logistic regression predicts the probability of a positive return. R² is not defined for a binary target, so I judge the classifier by accuracy, AUC and log-loss, and all three are weak. The common conclusion is weak forecast evidence on this sample, not six failed trading cards. No new portfolio return, holdout evaluation or registry trial is produced by this extension.')
 metric_rows=[]
 for name in ['OLS','Elastic Net','Random Forest','Gradient Boosting','Logistic Regression','MLP','Plain rule proxy']:
     m=next(v for v in diagnostic['overall'] if v['model']==name)
@@ -186,13 +186,13 @@ text(s,'*R² is not defined for a binary target; the logistic model is judged by
 
 s=slide('Elastic Net mostly learns a pooled intercept',
         'diagnostics/03-elastic-net-coefficients.png; summary.json; decision-behaviour.csv.',
-        'All Elastic Net slopes are zero in 76.92 percent of monthly fits. When this happens, every fund receives the same forecast from the pooled intercept. Positive forecasts account for 96.90 percent of its decision history and it holds an average of 6.78 funds. Refitting is frequent, but target signs rarely change. The reconstructed target history reproduces exactly the seventeen clustered decisions in the official report. This is an explanation grounded in the estimator and targets, rather than an assumption that timing checks failed. I did not lower the penalty or change the old card to obtain more decisions.')
+        'All Elastic Net slopes are zero in 76.92 percent of monthly fits. When this happens, every fund receives the same forecast from the pooled intercept. Positive forecasts account for 96.90 percent of its decision history and it holds an average of 6.78 funds. Refitting is frequent, but target signs rarely change. The reconstructed target history reproduces exactly the seventeen clustered decisions in the official report. I did not lower the penalty or change the old card to obtain more decisions.')
 text(s,'76.92% zero-slope refits | 96.90% positive forecasts | 17 clustered decisions',0.8,1.35,11.8,0.55,size=19,color=BLUE,bold=True)
 chart(s,Path('diagnostics/03-elastic-net-coefficients.png'),y=2.0,height=4.55)
 
-s=slide('Only volatility helps out of sample',
+s=slide('Only volatility has positive tree importance',
         'diagnostics/07-tree-permutation-importance.png; diagnostics/permutation-summary.csv; diagnostics/importance-stability.csv.',
-        'The adjacent training-importance rank correlations remain 0.82 and 0.79, but persistence is not predictive skill. Following-month permutation evaluates a frozen model on only that next month’s seven observations. Most tree features have negative mean permutation importance; vol63 is the only positive mean for each ensemble. The MLP has mixed signs and large refit dispersion. Positive training impurity importance can coexist with worse future prediction. The full comparison is in the manuscript. No feature subset or new model setting is selected from it.\nBars show each model’s mean next-month MSE increase in thousands of basis points squared; teal highlights vol63, the only positive mean for both tree models.')
+        'The adjacent training-importance rank correlations remain 0.82 and 0.79, but persistence is not predictive skill. Following-month permutation evaluates a frozen model on only that next month’s seven observations. Most tree features have negative mean permutation importance; vol63 is the only positive mean for each ensemble. The MLP has mixed signs and large refit dispersion. Positive training impurity importance can coexist with worse future prediction. These are noisy descriptive means from the pre-2023 sample, not the holdout, and neither causal effects nor significance tests. No feature subset or new model setting is selected from it.\nBars are in thousands of basis points squared; teal marks vol63.')
 chart(s,tree_importance_chart(),y=1.35,height=5.40)
 
 s=slide('First follow-up: liquidity reversal after a decline',
@@ -203,9 +203,9 @@ bullets(s,['MR-001-01: a distinct economic hypothesis, not a repaired ML card.',
            'One base variant; prescribed neighbours; bounded memory.',
            'Card locked before code; one run; prior holdout exposure disclosed.'],size=21)
 
-s=slide('The new hypothesis also fails economic edge',
+s=slide('Follow-up 1 also fails economic edge',
         'MR-001-01 report.ipynb cells 10–24; results.csv.',
-        'The official run passes timing, memory and decision-count checks, with 205 clustered decisions. It then fails economics: Sharpe is 0.24 against the benchmark 0.45, and annual alpha is minus 1.07 percent. Its placebo-beaten fraction is 37.10 percent, far below the required ninety percent. Stability and concentration also fail. The holdout cannot cancel the first failure. I committed the registry alone, then the report, and kept the strategy unchanged. Anas later fixed two separate follow-up rules before either newly requested card ran.'
+        'The official run passes timing, memory and decision-count checks, with 205 clustered decisions. It then fails economics: Sharpe is 0.24 against the benchmark 0.45, and annual alpha is minus 1.07 percent. Its placebo-beaten fraction is 37.10 percent, far below the required ninety percent. Stability and concentration also fail. The holdout cannot cancel the first failure, and the strategy stays unchanged. I then fixed two further rules before either of their cards ran.'
         '\nNagel (2012) finds little unconditional reversal profit in diversified industry portfolios and profitability mainly at high VIX; MR-001-01 uses diversified ETFs without volatility conditioning, so its failure is consistent with that evidence.')
 row=r['Liquidity reversal']
 table(s,['Recorded metric','Outcome'],[
@@ -214,30 +214,30 @@ table(s,['Recorded metric','Outcome'],[
 
 s=slide('Follow-up 2: stress does not validate reversal',
         'MR-001-02 card.yaml; report.ipynb cells 10–24; results.csv.',
-        'Anas fixed this stress condition before the run. SPY realised volatility over sixty-three sessions must exceed the median of its preceding 756 volatility observations. Current volatility is excluded from that reference median. Only then does the rule buy funds below the bill over the fixed base return horizon. It passes hygiene with 92 clustered decisions but fails economic edge and later significance, stability and robustness. GLD accounts for 84.15 percent of profit. The favourable holdout does not rescue it. This proxy is realised volatility, not Nagel’s VIX state. Its shorter effective window also prevents a paired claim against unconditional reversal. The added trial remains in gate four.')
+        'I fixed this stress condition before the run. SPY realised volatility over sixty-three sessions must exceed the median of its preceding 756 volatility observations. Only then does the rule buy funds below the bill over the fixed base return horizon. It passes hygiene with 92 clustered decisions but fails economic edge and later significance, stability and robustness. GLD accounts for 84.15 percent of profit. The favourable holdout does not rescue it. This proxy is realised volatility, not Nagel’s VIX state. Its shorter effective window also prevents a paired claim against unconditional reversal. The added trial remains in gate four.')
 row=r['Stress reversal']
 table(s,['Recorded metric','Outcome'],[
     ['First failed gate','2 — Economic edge'],['IS Sharpe / benchmark',row['sharpe']+' / '+row['benchmark_sharpe']],
     ['Annual alpha',row['alpha_pct_pa']+'%'],['Shifted placebos beaten',row['placebo_beaten_pct']+'%']],height=3.8)
 
-s=slide('TM-017-10 repairs 09 but still stops at significance',
+s=slide('TM-017-10 repairs 09 but fails gates 3 and 4',
         'TM-017-10 report.ipynb cells 12–24; TM-017-09 remains skipped; STOPPED.md.',
-        'TM-017-09 remains skipped at preflight and has no return result. Anas fixes a separate card, 10, changing only the undefined case: a fund without defined volatility is neither held nor included in the sum. The repaired rule passes hygiene, economics and robustness. SPY’s largest profit share is 28.55 percent. It first fails significance with 89.80 percent of placebos beaten against ninety percent required. DSR is 0.27 and the blend also fails stability. This is qualified economic and robustness progress, not full validation or a paired proof of improvement. No threshold or setting is changed after the result.\nThe permutation result for 63-session volatility and TM-017-10’s use of volatility for weighting rather than prediction are consistent but not causal: the card was specified before the extended diagnostic.')
+        'TM-017-09 remains skipped at preflight and has no return result. I then fixed a separate card, 10, changing only the undefined case: a fund without defined volatility is neither held nor included in the sum. The repaired rule passes hygiene, economics and robustness; SPY’s largest profit share is 28.55 percent. It first fails significance with 89.80 percent of placebos beaten against ninety percent required. Its DSR of 0.27 is far below the 0.90 required, so gate four also fails, and the blend fails stability. It is not a near-pass and not a paired proof of improvement. No threshold or setting is changed after the result.\nIts use of volatility is consistent with the permutation result, but not causally linked: the card was specified before the extended diagnostic.')
 row=r['Volatility-weighted trend']
 table(s,['Recorded metric','Outcome'],[
     ['First failed gate','3 — Significance'],['IS Sharpe / annual alpha',row['sharpe']+' / '+row['alpha_pct_pa']+'%'],
-    ['Shifted placebos beaten',row['placebo_beaten_pct']+'%'],['Robustness / DSR','Gate 6 passes / 0.27']],height=3.8)
+    ['Shifted placebos beaten',row['placebo_beaten_pct']+'%'],['Robustness / DSR','Gate 6 passes / 0.27 (needs 0.90)']],height=3.8)
 
 s=slide('A positive holdout Sharpe is not value added',
         'figures/04-holdout.png; report.ipynb cell 22; battery.py, decide_holdout().',
-        'Elastic Net has holdout Sharpe 0.91 versus the rule’s 0.89, but its alpha rounds to slightly negative zero while the rule’s is 0.61 percent. Sharpe measures excess return relative to volatility. Alpha measures return beyond benchmark exposure. The apparent paradox disappears when I separate these questions. Gate seven is also a lower-tail decay diagnostic, so it does not require positive alpha. The new rule has positive holdout alpha but fails earlier. I report all these outcomes and compute no new holdout return or forecast outside the official runs.')
+        'Elastic Net has holdout Sharpe 0.91 versus the rule’s 0.89, but its alpha rounds to slightly negative zero while the rule’s is 0.61 percent. Sharpe measures excess return relative to volatility. Alpha measures return beyond benchmark exposure. The apparent paradox disappears when I separate these questions. Gate seven is also a lower-tail decay diagnostic, so it does not require positive alpha. Both reversal rules have positive holdout alpha but fail earlier gates, while TM-017-10’s holdout alpha is slightly negative. I report all these outcomes and compute no new holdout return or forecast outside the official runs.')
 chart(s,Path('figures/04-holdout.png'))
 
 s=slide('The contribution is a transparent negative research cycle',
         'manuscript.md; results-notes.md; STOPPED.md; full local experiment record.',
         'The original ML cards fail validation, and the fixed six-model diagnostic provides weak forecast evidence without adding trading trials. Both reversal cards fail economics. The repaired volatility-weighted rule passes economics and robustness but fails significance and multiple testing. Its positive result on individual criteria remains visible alongside rejection. Four follow-up specifications contain three financial trials and one skipped preflight. Earlier holdouts were seen; paired comparison remains unavailable and effective windows differ. I retain every result, display logistic R squared as n/a and do not use importance to tune another model.')
 bullets(s,['Weak forecast evidence across six fixed learners; no new ML strategy.',
-           'TM-017-10 clears economics and robustness, but fails validation.',
+           'TM-017-10 clears economics and robustness, but fails gates 3 and 4.',
            'Four follow-ups: three financial trials; 09 remains skipped.',
            'Prior exposure and accumulated trials limit confirmation.'],size=21)
 

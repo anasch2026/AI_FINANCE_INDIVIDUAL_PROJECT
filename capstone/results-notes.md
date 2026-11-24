@@ -5,7 +5,7 @@ comparison cannot authenticate the reference run because its run commit 9a00fbb 
 absent from the squashed local history. No replacement test or common-window return
 calculation is supplied. All cards declare 2005–2022, but their published effective
 evaluation windows differ: the plain rule starts 2006-02-01, the ML cards 2011-02-02;
-MR-001-01 starts 2005-03-02 and MR-001-02 starts 2008-05-02; all recorded runs end 2022-12-30. Threshold versions also differ: reference version 1, ML version 4.
+MR-001-01 starts 2005-03-02, MR-001-02 starts 2008-05-02 and TM-017-10 starts 2006-02-02; all recorded runs end 2022-12-30. Threshold versions also differ: reference version 1, later cards version 4.
 
 Alpha is the lab's annual regression intercept against the same seven funds held
 always in equal parts, using the report's own effective window. It is not alpha
@@ -53,8 +53,8 @@ status alone was updated, with the bank index and board regenerated as the runbo
 requires; no existing strategy, model, threshold, template or data file changed.
 
 Manuscript Table 1 (gates): alpha-lab/lab/battery.py, constants and decide_*;
-alpha-lab/RUNBOOK.md. Historical reference thresholds are version 1; ML and MR
-are version 4. These are lab definitions, not new chosen thresholds.
+alpha-lab/RUNBOOK.md. Historical reference thresholds are version 1; ML, MR and
+TM-017-10 are version 4. These are lab definitions, not new chosen thresholds.
 Table 2 (strategy results): each CSV row's source_file and cells 12, 14, 22, 24.
 Table 3 (forecast diagnostic): diagnostics/forecast-metrics.csv and summary.json.
 All model settings and feature horizons: the corresponding lab card.yaml and
@@ -90,7 +90,7 @@ that prior exposure is disclosed. The new card was locked alone in commit
 in a31cfd5 and its report separately in aa76374. Source text was not changed after
 the run. The added diagnostics are exploratory, not independent confirmation.
 
-## Two further user-fixed specifications
+## Two further pre-fixed specifications
 
 MR-001-02 is follow-up 2. Its isolated card commit is 85b0ff2, code commit
 41dbd85, isolated registry commit 818bb2c and report commit 00408dc. All of
@@ -111,8 +111,9 @@ unmeasured specification rather than showing zero. Source: STOPPED.md and
 .git/codex-logs/try-TM-017-09-volatility-weighted-trend.log.
 
 Both rules were fixed by Anas in one instruction before either new card ran.
-Earlier 06–08 and MR-001-01 holdouts were already known. Three follow-up cards
-were specified overall; two have financial trials and one is unrun. This phase
+Earlier 06–08 and MR-001-01 holdouts were already known. At that stage three
+follow-up cards were specified; two had financial trials and one was unrun
+(TM-017-10 later brought the total to four). This phase
 adds only one registered trial. Every additional registered trial increases the
 multiple-testing burden; an unrun card does not add a fabricated trial. Original
 metrics, diagnostic statistics and earlier reports are not recomputed or changed.

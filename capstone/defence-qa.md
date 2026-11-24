@@ -2,7 +2,7 @@
 
 ## 1. What is your answer to the research question?
 
-None of the three ML implementations survives the battery. Elastic Net first fails gate 1 and both ensembles fail gate 2; the reference fails gate 3. This is a negative result for these implementations, not for every use of ML in finance.
+None of the three ML implementations survives the battery. Elastic Net first fails gate 1 and both ensembles fail gate 2; the reference fails gate 3. None of the follow-ups passes all seven gates either: both reversal rules fail gate 2, and TM-017-10 fails gates 3 and 4. This is a negative result for these implementations, not for every use of ML in finance.
 
 ## 2. What did you contribute beyond the existing framework?
 
@@ -14,7 +14,7 @@ Elastic Net constrains a linear model with overlapping features. Random Forest a
 
 ## 4. What did the diagnostic find?
 
-R² against zero is -2.36%, -6.23% and -13.08% for Elastic Net, Random Forest and Gradient Boosting. Elastic Net usually removes all slopes and predicts positive returns, while the ensembles' more active decisions do not restore forecast accuracy. The complete yearly and fund-level results remain available, including unfavourable periods.
+R² against zero is -2.36%, -6.23% and -13.08% for Elastic Net, Random Forest and Gradient Boosting, and -6.77% and -15.73% for the added OLS and MLP; logistic R² is n/a. Elastic Net usually removes all slopes and predicts positive returns, while the ensembles' more active decisions do not restore forecast accuracy. The complete yearly and fund-level results remain available, including unfavourable periods.
 
 ## 5. Why does Elastic Net have only 17 decisions despite monthly refits?
 
@@ -46,7 +46,7 @@ It limits the strength of confirmation, and I disclose it. The earlier 06–08 h
 
 ## 12. Why did you stop after the new rule failed?
 
-I retained the first follow-up’s failure without changing its rule. Anas later fixed two further specifications before either new card ran: stress reversal was executed once and failed gate 2; the weighting card 09 was skipped when its denominator was undefined. Anas subsequently fixed a separate card, 10, repairing only that undefined case. It ran once and failed gate 3. No completed card was changed, and 09 stays unrun.
+I retained the first follow-up’s failure without changing its rule. I then fixed two further specifications before either new card ran: stress reversal was executed once and failed gate 2; the weighting card 09 was skipped when its denominator was undefined. I subsequently fixed a separate card, 10, repairing only that undefined case. It ran once and failed gate 3. No completed card was changed, and 09 stays unrun.
 
 ## 13. Why reject MR-001-01 despite its positive holdout alpha?
 
@@ -66,7 +66,7 @@ No. The fixed SPY-volatility rule passes hygiene but fails gate 2 with Sharpe 0.
 
 ## 17. Why was TM-017-09 skipped, and what does TM-017-10 change?
 
-The exact denominator includes all tradable funds. At the 2006-03-01 preflight decision DBC lacks a full 63-session volatility, so that denominator is undefined. The user prohibited an exclusion, imputation or substitute rule and instructed a skip if exact implementation was impossible. Card 09 remains locked but unrun, with no registry trial or holdout opening. Anas later specified the eligible-volatility convention in new card 10; it passes economics and robustness but first fails significance. The two records must remain distinct.
+The exact denominator includes all tradable funds. At the 2006-03-01 preflight decision DBC lacks a full 63-session volatility, so that denominator is undefined. I had ruled out in advance any exclusion, imputation or substitute rule and required a skip if exact implementation was impossible. Card 09 remains locked but unrun, with no registry trial or holdout opening. I later specified the eligible-volatility convention in new card 10; it passes economics and robustness but first fails significance, and its DSR of 0.27 against 0.90 required means it is not a near-pass. The two records must remain distinct.
 
 ## 18. Why add logistic regression rather than another return model?
 
