@@ -48,7 +48,7 @@ The earlier cloud transfer deliberately contained only documentary inputs. This 
 - the original MIT licence and copyright attribution to Sami Andaloussi;
 - `RESEARCH-INPUTS.sha256.json`, identifying the frozen inputs and both provenance commits.
 
-The snapshots are archived inputs, not a fresh download. They are never parsed by the default reconstruction command; only their byte hashes are checked. No new holdout statistic is computed. The local package has not been uploaded or published automatically. The software licence is preserved and does not purport to define third-party data-use rights.
+The snapshots are archived inputs, not a fresh download. They are never parsed by the default reconstruction command; only their byte hashes are checked. No new holdout statistic is computed. The final package is available on the public default branch of the submission repository. The software licence is preserved and does not purport to define third-party data-use rights.
 
 ## Reproduction scope — distinguish two claims
 

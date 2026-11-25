@@ -5,8 +5,8 @@ Sources : instructions/AI_for_Finance_Capstone_Guidelines.pdf, sections 2 à 7 ;
 | Exigence | Preuve dans cette version | État |
 |---|---|---|
 | Type A : objectif économique et benchmark | Section 1 : allocation mensuelle, Sharpe net, alpha, coûts et décision de validation | Présent |
-| Résumé de 250 mots maximum, résultats chiffrés | 211 mots ; dataset, modèles, résultats et verdict | Vérifié |
-| Corps de 2 000 à 3 000 mots | 2240 hors références, 2344 avec références | Vérifié |
+| Résumé de 250 mots maximum, résultats chiffrés | 215 mots ; dataset, modèles, résultats et verdict | Vérifié |
+| Corps de 2 000 à 3 000 mots | 2306 hors références, 2410 avec références | Vérifié |
 | Cinq sections officielles | Abstract ; Introduction and Business Problem ; Data and Methodology ; Empirical Results ; Conclusion and Implementation Risks | Vérifié |
 | Traitement des données et modèle | Retards, labels achevés, fenêtre glissante, données manquantes, pooling, hyperparamètres et CV interne | Présent ; limites du scaler et de l'early stopping déclarées |
 | Valeur financière et robustesse | Tables 2 et 3 : Sharpe, alpha, coûts, placebos, stabilité et DSR | Concordance avec les rapports vérifiée |
@@ -15,7 +15,7 @@ Sources : instructions/AI_for_Finance_Capstone_Guidelines.pdf, sections 2 à 7 ;
 | Code documenté et dépendances | README, requirements, framework/tests complets et snapshots gelés | Fourni |
 | Reconstruction de tous les tableaux et figures | python -B reproduce.py ; verify_submission.py ; contrôle dans un second dossier | Exécutée et vérifiée depuis les sorties sauvegardées |
 | Réestimation indépendante des expériences | Code et données fournis, mais aucune expérience relancée à cette étape | Non effectuée et non présentée comme effectuée |
-| Présentation de deux minutes maximum | 4 diapositives, 226 mots ; estimation à débit explicite | Support prêt ; débit réel à chronométrer par Anas |
+| Présentation de deux minutes maximum | 4 diapositives, 240 mots ; estimation à débit explicite | Support prêt ; débit réel à chronométrer par Anas |
 | Déclaration IA et travail antérieur | Annexe A, licence MIT et attribution Sami Andaloussi | Conservés |
 | Responsabilité individuelle | defence-qa.md et texte oral | À maîtriser personnellement par Anas |
 
@@ -25,4 +25,8 @@ Les exemples de drawdown et turnover figurent dans le critère de validation fin
 
 ## Rendu visuel
 
-La structure des exports Office et les limites géométriques des diapositives ont été contrôlées. capstone/previews/ donne des aperçus du contenu et de la géométrie du PowerPoint avec une police de substitution ; ils ne constituent pas un rendu natif PowerPoint/LibreOffice. Une ouverture dans les applications utilisées pour la remise reste recommandée. Aucune inspection native de toutes les pages du Word n'est revendiquée dans cette session.
+Le manuscrit a été exporté puis rendu par LibreOffice en dix pages, toutes inspectées. Les quatre diapositives principales et les quinze diapositives de secours ont été rendues et inspectées. Les colonnes du Word, la lisibilité des tableaux, les légendes et la présentation des probabilités logistiques ont été corrigées. Il s’agit d’un contrôle du rendu LibreOffice, pas d’une affirmation sur toutes les versions de Microsoft Office.
+
+## Dernière relecture
+
+Voir capstone/RELECTURE-FINALE.md. Les contrôles supplémentaires vérifient aussi la concordance de tous les paragraphes, légendes et figures du Word avec ses sources, le texte oral et le tableau financier des diapositives. Les chiffres des expériences et du diagnostic restent identiques.
