@@ -56,7 +56,9 @@ Manuscript Table 1 (gates): alpha-lab/lab/battery.py, constants and decide_*;
 alpha-lab/RUNBOOK.md. Historical reference thresholds are version 1; ML, MR and
 TM-017-10 are version 4. These are lab definitions, not new chosen thresholds.
 Table 2 (strategy results): each CSV row's source_file and cells 12, 14, 22, 24.
-Table 3 (forecast diagnostic): diagnostics/forecast-metrics.csv and summary.json.
+Table 3 (costs, calendar stability, DSR): costs-robustness.csv, transcribed by
+extract_costs.py from each report's saved cells 12, 16, 18 and 20; nothing recomputed.
+Table 4 (forecast diagnostic): diagnostics/forecast-metrics.csv and summary.json.
 All model settings and feature horizons: the corresponding lab card.yaml and
 strategy.py, make(), features_at(), forecasts(); no settings were inferred from
 holdout performance. Snapshot dates: each report cell 4 and data/manifest.json.

@@ -76,4 +76,24 @@ It asks directly whether the return sign can be discriminated, instead of predic
 
 Impurity importance describes training splits, while permutation asks whether an input helps a frozen model predict the next month. I use ten fixed repeats and random_state=0 on only that month's observations before 2023, with no refit. Negative importance means shuffling improved error. Correlated inputs and small cross-sections make it noisy; I report all features and do not use the findings to tune another model.
 
+## 20. Could transaction costs explain the ML failures?
+
+No. The published annual cost drag is 0.04% to 0.30% (Table 3). The ML strategies' gross Sharpe ratios, before any cost, are 0.31, 0.09 and 0.12 against a benchmark of 0.39, so they lack an edge before trading. The ensembles do trade more than the rule (0.13% and 0.19% of annual costs against 0.08%), without a matching return.
+
+## 21. Explain the deflated Sharpe ratio in one breath.
+
+It is the probability that a strategy's benchmark-hedged Sharpe ratio beats what the best of all registered trials would reach by luck, allowing for skewness and fat tails. TM-017-10's DSR of 0.27 means that, after 88 trials, its result is far from the 0.90 the battery requires.
+
+## 22. What exactly are the shifted placebos?
+
+Each placebo shifts the strategy's own weight history in time by a different offset, wrapping around the sample, so it keeps the same pattern of holdings but loses the timing. If the timing has value, the real strategy should beat at least 90% of 1,000 such placebos. TM-017-10 beats 89.80%, so roughly one placebo in ten does as well as the real timing; the plain rule beats 81.70%.
+
+## 23. Why do you report no maximum drawdown or turnover?
+
+The lab's saved reports do not publish them, and I did not compute new performance statistics outside the official runs. Annual cost drag is the published measure that moves with turnover. I state this limitation in Section 4 rather than adding unlocked calculations after seeing the results.
+
+## 24. What would you need before deploying any of these strategies?
+
+A strategy that passes all seven gates first, then untouched data such as live paper trading, because the 2023–2025 holdout has already been seen. In production I would need model-risk governance in the spirit of SR 11-7 (independent validation, documentation, monitoring), and MiFID II algorithmic-trading controls if orders were automated. Monitoring would have to detect failures such as Elastic Net collapsing to a constant forecast.
+
 Sources: original and new report.ipynb files identified in results.csv; diagnostic tables and summary.json; unchanged strategy.py files for implementation details; new card.yaml and reasoning.md; capstone/results-notes.md for the full mapping and STOPPED.md for the comparison refusal. No additional performance test is introduced in these answers.

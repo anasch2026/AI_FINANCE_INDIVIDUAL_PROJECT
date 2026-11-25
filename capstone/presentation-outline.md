@@ -1,6 +1,6 @@
 # Individual defence — slide outline and speaker notes
 
-Fifteen slides for an approximately ten-minute individual defence. The PowerPoint contains the same speaker notes.
+Backup deck for questions: fifteen slides with the same speaker notes as presentation-backup.pptx. The two-minute defence itself is presentation.pptx (build_defence.py, defence-script.md).
 
 ## Slide 1 — Do ML trend signals survive strict validation?
 

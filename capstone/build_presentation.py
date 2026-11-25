@@ -1,4 +1,4 @@
-"""Create the individual defence from saved results and diagnostic artifacts only."""
+"""Create the fifteen-slide backup deck for questions from saved results only."""
 from pathlib import Path
 import csv
 import json
@@ -241,10 +241,10 @@ bullets(s,['Weak forecast evidence across six fixed learners; no new ML strategy
            'Four follow-ups: three financial trials; 09 remains skipped.',
            'Prior exposure and accumulated trials limit confirmation.'],size=21)
 
-prs.save(OUT/'presentation.pptx')
-outline=['# Individual defence — slide outline and speaker notes', '', 'Fifteen slides for an approximately ten-minute individual defence. The PowerPoint contains the same speaker notes.', '']
+prs.save(OUT/'presentation-backup.pptx')
+outline=['# Individual defence — slide outline and speaker notes', '', 'Backup deck for questions: fifteen slides with the same speaker notes as presentation-backup.pptx. The two-minute defence itself is presentation.pptx (build_defence.py, defence-script.md).', '']
 for index,current in enumerate(prs.slides,1):
     texts=[shape.text for shape in current.shapes if shape.has_text_frame and shape.text]
     outline.extend([f'## Slide {index} — {texts[0]}', '', 'Speaker notes:', '', current.notes_slide.notes_text_frame.text, ''])
 (OUT/'presentation-outline.md').write_text('\n'.join(outline).rstrip()+'\n')
-print('Saved presentation.pptx with',len(prs.slides),'slides and speaker notes.')
+print('Saved presentation-backup.pptx with',len(prs.slides),'slides and speaker notes.')

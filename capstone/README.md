@@ -1,17 +1,19 @@
 # Capstone research application and deliverables
 
-Read manuscript.md or manuscript.docx for the full study, and presentation.pptx for the individual defence. The manuscript contains numbered tables and figures and uses first-person academic prose. Detailed provenance is kept in results-notes.md.
+Read manuscript.md or manuscript.docx for the full study, and presentation.pptx for the two-minute individual defence. The manuscript contains numbered tables and figures and uses first-person academic prose. Detailed provenance is kept in results-notes.md.
 
 - results.csv: all completed strategies plus the retired, unrun 03–05 cards. Blank financial values mean not run, not zero.
 - figures/: four published-output charts covering the reference, original ML models, both reversal follow-ups and the repaired weighting card; the gate chart also marks TM-017-09 unrun.
 - diagnostics/: an in-sample-only forecast diagnostic, six charts, overall/year/fund metrics, coefficient histories, training importances, decision behaviour and source hashes. It computes no portfolio return.
 - verdict-drafts/: gate-by-gate review documents for the original ML cards, both executed reversal cards and TM-017-10, plus an unrun-specification record for TM-017-09; no lab verdict.md is written.
-- presentation.pptx: fifteen slides with speaker notes; presentation-outline.md is its text companion.
+- presentation.pptx: four slides for the two-minute defence, built by build_defence.py; defence-script.md holds the spoken script and timing.
+- presentation-backup.pptx: fifteen backup slides for questions, built by build_presentation.py; presentation-outline.md is its text companion.
+- costs-robustness.csv: published gross/net/doubled-cost Sharpe, annual costs, calendar blocks, DSR and profit concentration, transcribed by extract_costs.py from saved report cells; manuscript Table 3.
 - defence-qa.md: nineteen concise preparation answers, including research-integrity questions.
 - SUMMARY-FR.md: French handover, conclusions and pre-submission review priorities.
 - STOPPED.md: preserved history of administrative and comparison limitations, with current status appended.
 - source-hashes.json: hashes of the seven saved report notebooks.
-- build_capstone.py, build_presentation.py and local_plotting.py: local artifact builders and repository-only cache/font setup.
+- build_capstone.py, build_presentation.py and local_plotting.py: local artifact builders and repository-only cache/font setup. export_docx.py, extract_costs.py and build_defence.py need only the packages in ../requirements-docs.txt.
 
 ## Research record
 
