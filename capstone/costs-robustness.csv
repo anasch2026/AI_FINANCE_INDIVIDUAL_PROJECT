@@ -1,0 +1,8 @@
+card,model,gross_sharpe,net_sharpe,sharpe_2x_costs,alpha_2x_costs_pct_pa,costs_pct_pa,positive_alpha_blocks_of_5,best_year,alpha_without_best_year_pct_pa,trials,effective_trials,dsr,largest_profit_share_pct,largest_profit_asset,source_file,source_cells
+TM-017-01-time-series-momentum,Plain rule,0.51,0.50,0.48,1.49,0.08,4,2008,0.63,2,2,0.83,32.91,SPY,alpha-lab/strategies/TM-017-01-time-series-momentum/report.ipynb,12;16;18;20
+TM-017-06-elastic-net-trend,Elastic Net,0.31,0.30,0.30,-0.64,0.04,1,2019,-0.80,83,76,<0.01,46.87,SPY,alpha-lab/strategies/TM-017-06-elastic-net-trend/report.ipynb,12;16;18;20
+TM-017-07-random-forest-trend,Random Forest,0.09,0.08,0.06,-2.19,0.13,0,2014,-2.30,84,77,<0.01,151.00,SPY,alpha-lab/strategies/TM-017-07-random-forest-trend/report.ipynb,12;16;18;20
+TM-017-08-boosted-trend,Gradient Boosting,0.12,0.09,0.07,-2.08,0.19,0,2020,-2.57,85,78,<0.01,117.50,SPY,alpha-lab/strategies/TM-017-08-boosted-trend/report.ipynb,12;16;18;20
+MR-001-01-monthly-liquidity-reversal,Liquidity reversal,0.28,0.24,0.21,-1.36,0.30,2,2015,-1.63,86,79,<0.01,32.88,GLD,alpha-lab/strategies/MR-001-01-monthly-liquidity-reversal/report.ipynb,12;16;18;20
+MR-001-02-stress-conditioned-reversal,Stress reversal,0.10,0.08,0.06,-1.52,0.16,2,2015,-2.30,87,80,<0.01,84.15,GLD,alpha-lab/strategies/MR-001-02-stress-conditioned-reversal/report.ipynb,12;16;18;20
+TM-017-10-volatility-weighted-trend,Volatility-weighted trend,0.62,0.61,0.59,2.08,0.09,5,2008,0.92,88,81,0.27,28.55,SPY,alpha-lab/strategies/TM-017-10-volatility-weighted-trend/report.ipynb,12;16;18;20

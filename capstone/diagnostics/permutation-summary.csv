@@ -1,0 +1,25 @@
+model,feature,mean_bps2,refit_sd_bps2,months
+MLP,r21,4096.62,58294.97,142
+MLP,r63,2647.91,32630.47,142
+MLP,r126,3784.76,30646.43,142
+MLP,r252,-357.65,34268.15,142
+MLP,r252x21,-3846.08,29435.92,142
+MLP,vol63,-2504.31,43662.73,142
+MLP,vol126,360.40,34283.35,142
+MLP,ma200,11588.77,58803.16,142
+Random Forest,r21,-1741.79,14365.20,142
+Random Forest,r63,-1212.85,27982.90,142
+Random Forest,r126,-623.33,4291.16,142
+Random Forest,r252,-307.55,6359.59,142
+Random Forest,r252x21,-613.37,6083.30,142
+Random Forest,vol63,1173.36,8497.97,142
+Random Forest,vol126,-388.12,6972.01,142
+Random Forest,ma200,-604.42,5978.30,142
+Gradient Boosting,r21,-2340.01,25979.68,142
+Gradient Boosting,r63,-1762.01,46491.07,142
+Gradient Boosting,r126,-1348.40,11402.61,142
+Gradient Boosting,r252,-353.13,11709.17,142
+Gradient Boosting,r252x21,-1469.00,10850.39,142
+Gradient Boosting,vol63,1822.32,15067.99,142
+Gradient Boosting,vol126,-1080.45,12713.25,142
+Gradient Boosting,ma200,-750.57,14735.81,142

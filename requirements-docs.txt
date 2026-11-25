@@ -1,0 +1,8 @@
+# Document builds verified in the existing Python 3.14 environment.
+python-docx==1.2.0
+python-pptx==1.0.2
+Pillow==13.0.0
+lxml==6.1.3
+matplotlib==3.11.2
+numpy==2.5.3
+pandas==3.0.6

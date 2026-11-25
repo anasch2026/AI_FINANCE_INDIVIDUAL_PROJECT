@@ -1,0 +1,34 @@
+id: MR-001-02-stress-conditioned-reversal
+theory: MR-001
+parent: MR-001-01-monthly-liquidity-reversal
+mechanism: >
+  Providing liquidity after selling pressure bears inventory and funding risk. Nagel (2012)
+  motivates higher compensation mainly in high-volatility periods. The user-fixed rule conditions
+  reversal on high realised SPY volatility rather than trading the unconditional MR-001-01 rule.
+prediction:
+  sign: positive (liquidity provision after a recent decline is compensated in stress)
+  size: positive alpha is the qualitative prediction; no numerical magnitude was specified by the user and none is selected; the existing lab thresholds judge validation
+universe: [SPY, EFA, EEM, IEF, TLT, GLD, DBC]
+horizon: months
+signal: >
+  On the first session of each month, use closes through the preceding session. STRESS means
+  SPY annualised volatility of daily log returns over the last 63 sessions is strictly above
+  the median of that same volatility over the preceding 756 sessions, excluding the latest
+  volatility from the median. These two windows are fixed in code. If STRESS, each tradable
+  fund whose lookback-session return is below the compounded Treasury-bill return over the
+  same trailing interval receives 1/7; every other slot stays in cash. Otherwise all cash.
+parameters:
+  lookback: sessions of the fund return compared with the bill before the monthly decision
+variants:
+  - {lookback: 21}
+neighbours:
+  lookback: {25: [16, 26], 50: [10, 32]}
+choose: false
+memory: 830
+splits:
+  in_sample: [2005-01-01, 2022-12-31]
+  holdout: [2023-01-01, 2025-12-31]
+refuted_if: >
+  The stress-conditioned reversal earns nonpositive alpha against the same funds held always
+  in equal parts, lacks the lab's required shifted-placebo evidence, or fails the existing
+  stability and robustness requirements through concentration or dependence on a setting or episode.

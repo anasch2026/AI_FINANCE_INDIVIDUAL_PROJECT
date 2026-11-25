@@ -1,0 +1,4 @@
+model,adjacent_rank_correlation,top_feature_unchanged_pct,zero_coefficient_refits_pct
+Elastic Net,0.81,86.62,76.92
+Random Forest,0.82,82.39,
+Gradient Boosting,0.79,69.01,

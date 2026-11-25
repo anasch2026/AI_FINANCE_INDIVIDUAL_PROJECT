@@ -1,0 +1,35 @@
+id: TM-017-10-volatility-weighted-trend
+theory: TM-017
+parent: null
+mechanism: >
+  Intermediate-horizon trend can reflect gradual information absorption. Moskowitz, Ooi and
+  Pedersen (2012) scale positions by volatility. The user-fixed sizing retains the plain
+  trend entry and gives smaller capital slots to more volatile funds. This repairs only
+  TM-017-09's undefined denominator, without a return result from that unrun specification.
+prediction:
+  sign: positive (trend timing with inverse-volatility capital slots adds benchmark-relative value)
+  size: a qualitative positive-alpha and concentration-control prediction; no numerical magnitude was specified by Anas and none is selected
+universe: [SPY, EFA, EEM, IEF, TLT, GLD, DBC]
+horizon: months
+signal: >
+  On the first session of each month, using closes through the preceding session, hold a tradable
+  fund with defined volatility when its lookback-session return exceeds the compounded bill
+  over the same interval. Its weight is (1/vol_i) divided by the sum of (1/vol_j) over ALL
+  tradable funds with defined volatility, whether held or not. A fund without defined volatility
+  is not held and is not in the sum. Volatility is the annualised sample standard deviation of
+  daily log returns over the last 63 sessions, a fixed code window. Unheld slots remain cash.
+parameters:
+  lookback: sessions of the fund return compared with the bill before the monthly decision
+variants:
+  - {lookback: 252}
+neighbours:
+  lookback: {25: [189, 315], 50: [126, 378]}
+choose: false
+memory: 400
+splits:
+  in_sample: [2005-01-01, 2022-12-31]
+  holdout: [2023-01-01, 2025-12-31]
+refuted_if: >
+  The allocation earns nonpositive alpha against the same funds held always in equal parts,
+  lacks the lab's required shifted-placebo evidence, or fails its existing stability,
+  robustness and concentration requirements. No failed result permits tuning or another run.
