@@ -254,7 +254,7 @@ the original three learners and rule proxy. Original numerical metric rows,
 decision histories and coefficient records remain unchanged. New classification
 and permutation definitions are in diagnostics/diagnostics.md and diagnostics.py.
 The archived binary-sign score is retained unchanged in the raw metric files,
-but the published tables and chart show logistic R² as n/a. R² is not defined for a binary target; the logistic model is judged by accuracy, AUC and log-loss.
+but the published tables and chart show logistic R² as n/a. Return-unit R² is not applicable to logistic probabilities; the logistic model is judged by accuracy, AUC and log-loss.
 No probability-to-return conversion is invented. Its accuracy, AUC and log-loss
 concern the sign. Rank IC uses probabilities against future
 return ranks. The other R2 values retain their original return/proxy definitions.

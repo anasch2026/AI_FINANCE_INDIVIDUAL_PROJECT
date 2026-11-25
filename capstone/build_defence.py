@@ -53,7 +53,7 @@ def text(slide, value, x, y, w, h, size=22, fill=INK, bold=False, align=None):
     for i, line in enumerate(value.split("\n")):
         p = frame.paragraphs[0] if i == 0 else frame.add_paragraph()
         p.text = line
-        p.font.name, p.font.size, p.font.bold = "Aptos", Pt(size), bold
+        p.font.name, p.font.size, p.font.bold = "Calibri", Pt(size), bold
         p.font.color.rgb = color(fill)
         p.space_after = Pt(10)
         if align:
@@ -91,7 +91,7 @@ def table(s, headers, rows, x, y, w, h, size=18):
             cell.vertical_anchor = MSO_ANCHOR.MIDDLE
             cell.margin_left = Inches(0.12)
             for p in cell.text_frame.paragraphs:
-                p.font.name, p.font.size, p.font.bold = "Aptos", Pt(size), i == 0
+                p.font.name, p.font.size, p.font.bold = "Calibri", Pt(size), i == 0
                 p.font.color.rgb = color("FFFFFF" if i == 0 else INK)
     return t
 
@@ -105,10 +105,11 @@ def picture(s, path, x, y, w):
 # Slide 1 — problem and answer.
 s = slide("Do ML trend signals survive strict validation?",
           f"A trend rule on seven ETFs beats equal-weight holding, Sharpe {rule['sharpe']} against "
-          f"{rule['benchmark_sharpe']}, but it beats only {rule['placebo_beaten_pct']} percent of random-timing "
+          f"{rule['benchmark_sharpe']}, but it beats only {rule['placebo_beaten_pct']} percent of shifted-timing "
           "placebos, so its edge may be luck. I asked whether machine learning can make that monthly "
           "entry decision reliably better after costs. The short answer is no.",
           "Sources: results.csv (TM-017-01 report). Prior work: Alpha Factory, co-founded with Sami Andaloussi. AI assistance disclosed in the manuscript.")
+text(s, "Anas Chantah | AI for Finance | IE Business School", 0.85, 1.25, 11.5, 0.35, size=16, fill=GRAY)
 text(s, "Business problem", 0.85, 1.7, 11.5, 0.5, size=20, fill=BLUE, bold=True)
 text(s, f"Trend rule on 7 ETFs: Sharpe {rule['sharpe']} vs {rule['benchmark_sharpe']} passive, "
         f"alpha {rule['alpha_pct_pa']}%/yr\n…but only {rule['placebo_beaten_pct']}% of timing placebos beaten (90% needed)",
@@ -129,7 +130,7 @@ s = slide("ML replaces only the entry decision",
           "Sources: ML card.yaml and strategy.py; manuscript Table 1.")
 steps = [("Data", "7 ETFs\nSPY, EFA, EEM,\nIEF, TLT, GLD, DBC\nDaily, 2005–2025"),
          ("Forecast", "Elastic Net\nRandom Forest\nGradient Boosting\n8 features\n60-month window"),
-         ("Decision", "Hold 1/7 of a fund\nif forecast > 0"),
+         ("Decision", "1/7 of portfolio\nper eligible fund\nif forecast > 0"),
          ("Validation", "7 gates:\nHygiene; economics\nPlacebos; DSR\nStability; robustness\n2023–2025 holdout")]
 for i, (head, body) in enumerate(steps):
     x = 0.7 + i * 3.1
@@ -139,16 +140,16 @@ for i, (head, body) in enumerate(steps):
     box.line.color.rgb = color(BLUE)
     text(s, head, x + 0.2, 2.2, 2.4, 0.5, size=22, fill=NAVY, bold=True)
     text(s, body, x + 0.2, 2.9, 2.45, 2.3, size=16)
-text(s, "No look-ahead: lagged features · labels used only once known · diagnostic cut at 2022",
+text(s, "Timing controls: lagged features · labels used only once known · diagnostic cut at 2022",
      0.7, 5.8, 12.0, 0.6, size=16, fill=GRAY)
 
 # Slide 3 — results.
 s = slide("No ML strategy survives; costs are not the reason",
           f"All three ML strategies fail. Their Sharpe ratios are {en['sharpe']}, {rf['sharpe']} and "
           f"{gb['sharpe']}, with negative alphas, on their reported windows. Costs are not the reason: "
-          "the gross Sharpe ratios are already too low. Forecasts are worse than predicting zero for "
+          "the gross Sharpe ratios are already too low. These cross-window comparisons are descriptive. Forecasts are worse than predicting zero for "
           "every return model. Elastic Net mostly collapses to a single average forecast, so it produces few distinct target changes.",
-          "Sources: results.csv; costs-robustness.csv; diagnostics/summary.json.")
+          "Sources: results.csv; costs-robustness.csv; diagnostics/summary.json. Unequal effective windows; comparison is descriptive.")
 rows = [[name, results[name]["sharpe"], costs[name]["gross_sharpe"], results[name]["alpha_pct_pa"],
          results[name]["first_failed_gate"]]
         for name in ("Plain rule", "Elastic Net", "Random Forest", "Gradient Boosting")]
@@ -166,7 +167,7 @@ for cell in t.rows[0].cells:
         paragraph.line_spacing = 1.0
 text(s, f"All five return models: R² vs zero = {min(r2):.2f}% to {max(r2):.2f}%",
      0.7, 4.85, 12.0, 0.6, size=21, fill=NAVY, bold=True)
-text(s, "Elastic Net: all slopes zero in 76.92% of refits → only 17 distinct decisions",
+text(s, "Elastic Net: all slopes zero in 76.92% of refits → 17 clustered decisions",
      0.7, 5.55, 12.0, 0.6, size=21)
 
 # Slide 4 — best follow-up and conclusion.
@@ -175,14 +176,14 @@ s = slide("Best follow-up still fails: do not deploy",
           f"{best['sharpe']} and its alpha {best['alpha_pct_pa']} percent, but it beats only "
           f"{best['placebo_beaten_pct']} percent of placebos and its deflated Sharpe is "
           f"{costs['Volatility-weighted trend']['dsr']}, far below 0.90, so it is not a near-pass. "
-          "The lesson: a good backtest is not a validated strategy. I would not deploy any of them.",
+          "This follow-up is exploratory: earlier holdouts were already seen. The lesson: a good backtest is not a validated strategy. I would not deploy any of them.",
           "Sources: results.csv and costs-robustness.csv (TM-017-10 report); manuscript Tables 1–3 and Section 4.")
 cv = costs['Volatility-weighted trend']
 t = table(s, ["Gate", "Requirement", "TM-017-10", "Result"], [
-    ["2 Economic edge", "Sharpe ≥ 0.40 and ≥ benchmark", f"{best['sharpe']} vs {best['benchmark_sharpe']}", "Pass"],
+    ["2 Economic edge", "Net edge and doubled-cost resilience", f"{best['sharpe']} vs {best['benchmark_sharpe']}", "Pass"],
     ["3 Significance", "≥ 90% of placebos beaten", f"{best['placebo_beaten_pct']}%", "Fail"],
     ["4 Multiple testing", "Deflated Sharpe ≥ 0.90", cv['dsr'], "Fail"],
-    ["6 Robustness", "One asset ≤ 30% of profit", f"{cv['largest_profit_asset']} {cv['largest_profit_share_pct']}%", "Pass"]],
+    ["6 Robustness", "Includes: one asset ≤ 30% of profit", f"{cv['largest_profit_asset']} {cv['largest_profit_share_pct']}%", "Pass"]],
     0.7, 1.55, 11.9, 3.0, size=19)
 for j, width in enumerate((3.0, 4.6, 2.5, 1.8)):
     t.columns[j].width = Inches(width)

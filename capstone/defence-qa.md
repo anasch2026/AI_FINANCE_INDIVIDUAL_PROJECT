@@ -10,7 +10,7 @@ I built the ML layer, carried out the diagnostic, designed the follow-up hypothe
 
 ## 3. Why did you use these model families?
 
-Elastic Net constrains a linear model with overlapping features. Random Forest and Gradient Boosting permit nonlinear relationships through different ensemble methods. Their settings were fixed before the original runs; I did not select them after seeing favourable returns.
+Elastic Net constrains a linear model with overlapping features. Random Forest and Gradient Boosting permit nonlinear relationships through different ensemble methods. Their candidate settings were fixed before the original runs. Elastic Net selects its penalty and L1/L2 share by inner time-series cross-validation; I did not select settings after seeing favourable portfolio returns.
 
 ## 4. What did the diagnostic find?
 
@@ -82,7 +82,7 @@ No. The published annual cost drag is 0.04% to 0.30% (Table 3). The ML strategie
 
 ## 21. Explain the deflated Sharpe ratio in one breath.
 
-It is the probability that a strategy's benchmark-hedged Sharpe ratio beats what the best of all registered trials would reach by luck, allowing for skewness and fat tails. TM-017-10's DSR of 0.27 means that, after 88 trials, its result is far from the 0.90 the battery requires. This is a model-based, selection-adjusted statistic, not a posterior probability that the strategy will be profitable.
+It is a model-based significance measure for benchmark-hedged returns against an expected-by-luck Sharpe hurdle, allowing for non-normal returns. This lab groups near-clone trials for the effective count, so registered and effective trials are not identical. TM-017-10's DSR of 0.27 means that, after 88 trials, its result is far from the 0.90 the battery requires. This is a model-based, selection-adjusted statistic, not a posterior probability that the strategy will be profitable.
 
 ## 22. What exactly are the shifted placebos?
 

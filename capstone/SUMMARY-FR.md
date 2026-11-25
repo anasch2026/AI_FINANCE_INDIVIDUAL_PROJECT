@@ -38,15 +38,17 @@ Alphas contre la détention passive à parts égales. Périodes effectives diff�
 
 **Vérifications réalisées.**
 
-- Résumé : 211 mots, maximum officiel 250.
-- Corps : 2240 mots ; 2344 en incluant les références. Les deux comptages respectent la limite de 2 000 à 3 000.
+- Résumé : 215 mots, maximum officiel 250.
+- Corps : 2306 mots ; 2410 en incluant les références. Les deux comptages respectent la limite de 2 000 à 3 000.
 - Quatre tableaux et six figures ; tous les tableaux numériques sont comparés aux sources archivées.
-- Présentation : quatre diapositives, 226 mots prononcés, soit environ 1.61 minute au débit supposé de 140 mots/minute. Une répétition chronométrée personnelle reste nécessaire.
-- 718 fichiers d'entrée contrôlés par empreinte ; 779 contrôles réussis.
+- Présentation : quatre diapositives, 240 mots prononcés, soit environ 1.71 minute au débit supposé de 140 mots/minute. Une répétition chronométrée personnelle reste nécessaire.
+- 718 fichiers d'entrée contrôlés par empreinte ; 784 contrôles réussis.
 - Reconstruction documentaire également réussie dans un dossier isolé, sans installation, avec le même environnement. Les CSV numériques et les six figures du manuscrit correspondent octet pour octet.
 
 **Reproductibilité : portée exacte.** Le framework complet, les tests, les dépendances, le registre et les snapshots originaux sont fournis. La commande python -B reproduce.py reconstruit les documents depuis les sorties archivées. Aucune réestimation des modèles ou nouvelle exécution financière n'est revendiquée. La comparaison appariée reste indisponible et aucun test maison ne la remplace.
 
 **Conclusion.** Les stratégies ML initiales ne passent pas la validation. TM-017-10 a de meilleurs constats économiques et de robustesse sur sa fenêtre, mais échoue aux exigences de significativité et d'essais multiples. Les résultats sont négatifs pour les implémentations testées, avec les limites d'échantillon et d'exposition antérieure au holdout clairement conservées.
 
-**Avant dépôt.** Vérifier le rendu natif des deux fichiers principaux, répéter le texte oral et maîtriser les vingt-quatre questions. Mettre la copie finale complète à disposition du correcteur avec des droits d'accès adaptés, puis déposer les livrables avant le début officiel de la session 13. La copie locale n'a pas été publiée automatiquement sur GitHub.
+**Rendu contrôlé.** Les dix pages du Word, les quatre diapositives principales et les quinze diapositives de secours ont été rendues par LibreOffice et inspectées. **Avant dépôt.** Répéter le texte oral et maîtriser les vingt-quatre questions. Mettre la copie finale complète à disposition du correcteur avec des droits d'accès adaptés, puis déposer les livrables avant le début officiel de la session 13. La version finale est publiée sur main : https://github.com/anasch2026/AI_FINANCE_INDIVIDUAL_PROJECT.
+
+**Dernière relecture.** Les explications sur le mélange L1/L2, le R² logistique, le DSR et la pondération ont été précisées. Le nom d’Anas apparaît sur la première diapositive. Tous les CSV numériques, les entrées de recherche gelées et les six figures du manuscrit sont inchangés. Voir RELECTURE-FINALE.md pour le périmètre exact.
