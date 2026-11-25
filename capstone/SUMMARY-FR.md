@@ -1,4 +1,8 @@
-Travail terminé : TM-017-10 a été verrouillée puis exécutée une seule fois ; le diagnostic a été étendu sans nouvelle stratégie ni calcul de portefeuille. Word et PowerPoint ont été reconstruits.
+# Version finale — remise AI for Finance
+
+Les consignes officielles sont désormais lues et incluses. Cette version reprend le commit Claude 7983aa7fd8162d16029ad607fd2e680479649bd2, puis corrige les interprétations et complète le dossier local sans changer les résultats ni relancer une expérience.
+
+**Fichiers à remettre :** manuscript.docx et presentation.pptx (quatre diapositives). Le support presentation-backup.pptx, quinze diapositives, sert uniquement aux questions.
 
 **Résultats de toutes les cartes.**
 
@@ -16,7 +20,7 @@ Travail terminé : TM-017-10 a été verrouillée puis exécutée une seule fois
 | TM-017-09 — Spécification non exécutée | Sautée au précontrôle | — | — | — | — | — |
 | TM-017-10 — Tendance pondérée réparée | 3 | 0.61 | 2.16 | 89.80 | 0.79 | -0.02 |
 
-Alphas contre la détention passive à parts égales. Périodes effectives différentes : comparaison descriptive, sans test apparié, car le commit historique 9a00fbb manque. Les sept cartes exécutées passent le gate 7 sans annuler leurs échecs précédents ; -0.00 désigne une valeur légèrement négative avant arrondi. Sources : résultats publiés, [results.csv](/Users/anaschantah/alpha-factory/capstone/results.csv) et [results-notes.md](/Users/anaschantah/alpha-factory/capstone/results-notes.md).
+Alphas contre la détention passive à parts égales. Périodes effectives différentes : comparaison descriptive, sans test apparié, car le commit historique 9a00fbb manque. Les sept cartes exécutées passent le gate 7 sans annuler leurs échecs précédents ; -0.00 désigne une valeur légèrement négative avant arrondi. Sources : résultats publiés, [results.csv](results.csv) et [results-notes.md](results-notes.md).
 
 **Diagnostic étendu : six modèles et la règle proxy.**
 
@@ -30,32 +34,19 @@ Alphas contre la détention passive à parts égales. Périodes effectives diff�
 | MLP | -15.73 | -0.07 | -1.68 | 45.98 | — | — |
 | Règle proxy | -8.03 | 0.06 | 1.13 | 52.41 | — | — |
 
-*R² is not defined for a binary target; the logistic model is judged by accuracy, AUC and log-loss. La règle proxy utilise le signal annuel divisé par douze. Source : [diagnostics.md](/Users/anaschantah/alpha-factory/capstone/diagnostics/diagnostics.md) et ses CSV.
+*Le R² de rendement est sans objet pour les probabilités logistiques ; accuracy, AUC et log-loss évaluent ce classificateur. La règle proxy utilise le signal annuel divisé par douze. Source : [diagnostics.md](diagnostics/diagnostics.md) et ses CSV.
 
-**TM-017-10, en trois lignes.**
+**Vérifications réalisées.**
 
-- Elle répare uniquement le cas de volatilité indéfinie de TM-017-09, qui reste sans run ni résultat financier.
-- Elle passe les gates 1, 2, 6 et 7 : Sharpe IS 0.61, alpha 2.16%/an, part maximale du profit de SPY 28.55%.
-- Elle échoue d’abord au gate 3, avec 89.80% des placebos battus contre 90.00% requis ; le DSR de 0.27 échoue aussi au gate 4.
+- Résumé : 211 mots, maximum officiel 250.
+- Corps : 2240 mots ; 2344 en incluant les références. Les deux comptages respectent la limite de 2 000 à 3 000.
+- Quatre tableaux et six figures ; tous les tableaux numériques sont comparés aux sources archivées.
+- Présentation : quatre diapositives, 226 mots prononcés, soit environ 1.61 minute au débit supposé de 140 mots/minute. Une répétition chronométrée personnelle reste nécessaire.
+- 718 fichiers d'entrée contrôlés par empreinte ; 779 contrôles réussis.
+- Reconstruction documentaire également réussie dans un dossier isolé, sans installation, avec le même environnement. Les CSV numériques et les six figures du manuscrit correspondent octet pour octet.
 
-**Diagnostic étendu, en quatre lignes.**
+**Reproductibilité : portée exacte.** Le framework complet, les tests, les dépendances, le registre et les snapshots originaux sont fournis. La commande python -B reproduce.py reconstruit les documents depuis les sorties archivées. Aucune réestimation des modèles ou nouvelle exécution financière n'est revendiquée. La comparaison appariée reste indisponible et aucun test maison ne la remplace.
 
-- OLS et MLP ont des R² de rendement négatifs, comme les trois modèles initiaux ; ajouter de la flexibilité ne suffit pas ici.
-- La logistique obtient 48.69% de signes corrects, une AUC de 0.45 et une log-loss de 0.71 : prédire directement le signe ne résout pas le problème.
-- La volatilité sur 63 séances est la seule importance moyenne de permutation positive pour les deux arbres ; le MLP donne des signes mixtes et la dispersion entre refits est forte.
-- Les comparaisons utilisent les mêmes 994 observations sur 142 mois évalués, avant 2023, sans portefeuille ni essai ajouté au registre.
+**Conclusion.** Les stratégies ML initiales ne passent pas la validation. TM-017-10 a de meilleurs constats économiques et de robustesse sur sa fenêtre, mais échoue aux exigences de significativité et d'essais multiples. Les résultats sont négatifs pour les implémentations testées, avec les limites d'échantillon et d'exposition antérieure au holdout clairement conservées.
 
-**Conclusion en trois phrases.** Les trois stratégies ML initiales ne passent pas la validation et l’extension montre des prévisions peu convaincantes. TM-017-10 améliore les constats économiques et de robustesse, mais reste rejetée pour significativité puis essais multiples. Ces résultats décrivent les implémentations testées, avec des holdouts antérieurs déjà connus, sans réfuter tout usage du ML en finance.
-
-**Fichiers changés.**
-
-- `alpha-lab/strategies/TM-017-10-volatility-weighted-trend/` : carte, raisonnement, plan, code autonome et rapport officiel ; registre engagé seul, statuts de théorie, index et `STATUS.md` actualisés.
-- `capstone/diagnostics/` : script, rapport, mesures et prévisions additionnelles, importances de permutation et graphiques ; anciens chiffres conservés.
-- [manuscript.md](/Users/anaschantah/alpha-factory/capstone/manuscript.md) et [manuscript.docx](/Users/anaschantah/alpha-factory/capstone/manuscript.docx) : comparaison étendue, section 5.5, discussion et limites actualisées.
-- [presentation.pptx](/Users/anaschantah/alpha-factory/capstone/presentation.pptx), `presentation-outline.md` et `defence-qa.md` : quinze diapositives avec notes, dix-neuf questions.
-- `results.csv`, `results-notes.md`, `figures/`, `source-hashes.json` et les brouillons de verdict 09 et 10 : provenance et résultats actualisés.
-- Scripts de génération, `README.md`, `STOPPED.md` et `SUMMARY-FR.md`.
-
-Avant soumission, relire la mention n/a du R² logistique, les limites des permutations, la distinction 09 non exécutée / 10 exécutée et la divulgation des holdouts déjà vus. Vérifier la mise en page dans Word et PowerPoint et s’approprier les notes orales. Une seule nouvelle carte a été exécutée, aucun ancien run relancé, aucun réglage après résultat, aucun push.
-
-**Mise à jour (session cloud, après réception de la grille et des consignes officielles).** Le manuscrit a été restructuré selon les consignes : cinq sections imposées, corps du texte entre 2 000 et 3 000 mots, résumé chiffré, risques de mise en œuvre. La numérotation des sections citée plus haut est donc périmée. Un tableau 3 transcrit les coûts, la stabilité calendaire et le DSR publiés par les rapports (costs-robustness.csv, extract_costs.py). La présentation principale compte maintenant 4 diapositives pour 2 minutes ; l'ancien support de 15 diapositives devient presentation-backup.pptx. Aucun nombre existant n'a changé. Voir A-FAIRE-AVANT-REMISE.md.
+**Avant dépôt.** Vérifier le rendu natif des deux fichiers principaux, répéter le texte oral et maîtriser les vingt-quatre questions. Mettre la copie finale complète à disposition du correcteur avec des droits d'accès adaptés, puis déposer les livrables avant le début officiel de la session 13. La copie locale n'a pas été publiée automatiquement sur GitHub.

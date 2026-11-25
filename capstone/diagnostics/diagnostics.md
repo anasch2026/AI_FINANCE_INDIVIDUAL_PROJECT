@@ -24,7 +24,7 @@ Per-fund rank correlation is a time-series Spearman correlation across that fund
 | MLP | -15.73 | -0.07 | -1.68 | 142 | 45.98 | N/A | N/A | 994 |
 | Plain rule proxy | -8.03 | 0.06 | 1.13 | 142 | 52.41 | N/A | N/A | 994 |
 
-*R² is not defined for a binary target; the logistic model is judged by accuracy, AUC and log-loss. IC uses probabilities against subsequent return ranks.
+*Return R² is n/a for logistic probabilities; accuracy, AUC and log-loss evaluate the classifier. IC uses probabilities against subsequent return ranks.
 
 ## Decision behaviour
 
@@ -139,7 +139,7 @@ The complete overall/year/fund table is forecast-metrics.csv. The fit-level reco
 | MLP | 2021 | 4.13 | 0.23 | 3.55 | 57.14 |
 | MLP | 2022 | -22.12 | 0.04 | 0.43 | 37.66 |
 
-*R² is not defined for a binary target; the logistic model is judged by accuracy, AUC and log-loss.
+*Return R² is n/a for logistic probabilities; accuracy, AUC and log-loss evaluate the classifier.
 
 ### Fund breakdown
 
@@ -195,7 +195,7 @@ The complete overall/year/fund table is forecast-metrics.csv. The fit-level reco
 | MLP | SPY | -15.03 | -0.05 | N/A | 48.59 |
 | MLP | TLT | -19.76 | -0.13 | N/A | 43.66 |
 
-*R² is not defined for a binary target; the logistic model is judged by accuracy, AUC and log-loss.
+*Return R² is n/a for logistic probabilities; accuracy, AUC and log-loss evaluate the classifier.
 
 ![Overall forecast quality](01-forecast-quality.png)
 

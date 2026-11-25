@@ -124,13 +124,13 @@ s = slide("ML replaces only the entry decision",
           "I kept the funds, the monthly schedule and the one-seventh allocation, and replaced only the "
           "decision to hold. Elastic Net, Random Forest and Gradient Boosting forecast next-month excess "
           "returns from eight lagged price features on a rolling sixty-month window. Every strategy then "
-          "faces seven gates: costs, placebos, a deflated Sharpe ratio for multiple testing, stability, "
+          "faces seven gates: hygiene, economic edge, significance, multiple testing, stability, "
           "robustness and a sealed 2023 to 2025 holdout.",
           "Sources: ML card.yaml and strategy.py; manuscript Table 1.")
 steps = [("Data", "7 ETFs\nSPY, EFA, EEM,\nIEF, TLT, GLD, DBC\nDaily, 2005–2025"),
          ("Forecast", "Elastic Net\nRandom Forest\nGradient Boosting\n8 features\n60-month window"),
          ("Decision", "Hold 1/7 of a fund\nif forecast > 0"),
-         ("Validation", "7 gates: costs,\nplacebos, DSR,\nstability, robustness,\n2023–2025 holdout")]
+         ("Validation", "7 gates:\nHygiene; economics\nPlacebos; DSR\nStability; robustness\n2023–2025 holdout")]
 for i, (head, body) in enumerate(steps):
     x = 0.7 + i * 3.1
     box = s.shapes.add_shape(MSO_SHAPE.ROUNDED_RECTANGLE, Inches(x), Inches(2.0), Inches(2.8), Inches(3.4))
@@ -145,9 +145,9 @@ text(s, "No look-ahead: lagged features · labels used only once known · diagno
 # Slide 3 — results.
 s = slide("No ML strategy survives; costs are not the reason",
           f"All three ML strategies fail. Their Sharpe ratios are {en['sharpe']}, {rf['sharpe']} and "
-          f"{gb['sharpe']}, with negative alphas, worse than the simple rule. Costs are not the reason: "
+          f"{gb['sharpe']}, with negative alphas, on their reported windows. Costs are not the reason: "
           "the gross Sharpe ratios are already too low. Forecasts are worse than predicting zero for "
-          "every return model. Elastic Net mostly collapses to a single average forecast, so it barely trades.",
+          "every return model. Elastic Net mostly collapses to a single average forecast, so it produces few distinct target changes.",
           "Sources: results.csv; costs-robustness.csv; diagnostics/summary.json.")
 rows = [[name, results[name]["sharpe"], costs[name]["gross_sharpe"], results[name]["alpha_pct_pa"],
          results[name]["first_failed_gate"]]
@@ -156,7 +156,15 @@ t = table(s, ["Strategy", "Net Sharpe", "Gross Sharpe", "Alpha (%/yr)", "First f
           rows, 0.7, 1.6, 11.9, 2.9, size=20)
 for j, width in enumerate((3.3, 2.0, 2.2, 2.2, 2.2)):
     t.columns[j].width = Inches(width)
-text(s, f"Next-month R² vs a zero forecast: {min(r2):.2f}% to {max(r2):.2f}% for all five return models",
+t.rows[0].height = Inches(0.80)
+for row in list(t.rows)[1:]:
+    row.height = Inches(0.525)
+for cell in t.rows[0].cells:
+    for paragraph in cell.text_frame.paragraphs:
+        paragraph.font.size = Pt(18)
+        paragraph.space_after = Pt(0)
+        paragraph.line_spacing = 1.0
+text(s, f"All five return models: R² vs zero = {min(r2):.2f}% to {max(r2):.2f}%",
      0.7, 4.85, 12.0, 0.6, size=21, fill=NAVY, bold=True)
 text(s, "Elastic Net: all slopes zero in 76.92% of refits → only 17 distinct decisions",
      0.7, 5.55, 12.0, 0.6, size=21)
@@ -178,7 +186,7 @@ t = table(s, ["Gate", "Requirement", "TM-017-10", "Result"], [
     0.7, 1.55, 11.9, 3.0, size=19)
 for j, width in enumerate((3.0, 4.6, 2.5, 1.8)):
     t.columns[j].width = Inches(width)
-text(s, "Risks: 88 trials · holdout seen before follow-ups · 7 correlated funds · SR 11-7 governance",
+text(s, "Risks: 88 trials · holdout seen before follow-ups · 7 correlated funds · governance unassessed",
      0.7, 4.95, 11.9, 0.6, size=17, fill=GRAY)
 text(s, "A good backtest is not a validated strategy: I would deploy none of them.", 0.7, 5.75, 11.9, 0.7,
      size=24, fill=TEAL, bold=True)

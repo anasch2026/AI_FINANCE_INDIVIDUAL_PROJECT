@@ -1,60 +1,17 @@
-# À faire avant la remise (début de la session 13)
+# Dernières étapes avant remise
 
-Ce qui est prêt dans ce dépôt : manuscrit conforme aux consignes (corps du texte d'environ
-2 300 mots, résumé chiffré de 211 mots, cinq sections imposées, risques de mise en œuvre), Word
-reconstruit, présentation de 2 minutes en 4 diapositives (227 mots, environ 1 min 40), support de
-secours de 15 diapositives (à reconstruire), 24 questions de soutenance, README de reproduction.
+## Travail documentaire terminé dans cette copie
 
-Ce qui suit ne peut être fait que depuis ton Mac. Le point 1 pèse le plus dans la note
-(critère 4, 20 points).
+Le manuscrit court et ses quatre tableaux/six figures ont été reconstruits, ainsi que la présentation principale de quatre diapositives et le support de secours de quinze diapositives. Les chiffres sont vérifiés contre les rapports originaux. Le framework, ses tests, ses dépendances et les snapshots gelés sont désormais fournis, avec leur provenance et des contrôles d'intégrité.
 
-## 1. Rendre les expériences reproductibles (indispensable pour viser 9/10)
+La licence MIT d'origine et le copyright de Sami Andaloussi sont conservés. Aucune nouvelle récupération de données n'est substituée aux snapshots. Le README distingue reconstruction documentaire vérifiée et réestimation des expériences non effectuée. La comparaison appariée reste impossible et aucune expérience n'a été relancée.
 
-La grille exige un dépôt qui « runs from start to finish and reproduces every result ».
-Aujourd'hui, ce dépôt ne contient ni le framework (`alpha-lab/lab/`), ni ses tests, ni
-`alpha-lab/requirements.txt`, ni les données. Il faut :
+## Ce qui reste personnellement à faire
 
-1. Obtenir l'accord de Sami Andaloussi pour publier le framework, puis ajouter dans ce dépôt
-   `alpha-lab/lab/` (dont `ml.py`), `alpha-lab/tests/`, `alpha-lab/requirements.txt`,
-   `alpha-lab/templates/`, le registre et `capstone/diagnostics/diagnostics.py` dans sa version
-   exécutable. Sans cela, seul le critère « documents reconstruits depuis les sorties sauvegardées »
-   est satisfait.
-2. Données : les prix Yahoo ne sont probablement pas redistribuables. Fournir un script qui
-   retélécharge les sept ETF et vérifie les empreintes de `alpha-lab/data/manifest.json`, en
-   précisant qu'un nouveau téléchargement peut différer du snapshot gelé.
-3. Vérifier avec Sami comment un tiers peut réexécuter une carte dans un clone neuf (le lab refuse
-   de relancer une carte déjà enregistrée), puis documenter la commande exacte dans `README.md`.
-4. Tester le tout dans un clone propre, sur une autre machine si possible, et noter la durée.
+1. Ouvrir le Word et le PowerPoint finaux dans les applications utilisées pour la remise, afin de vérifier leur rendu natif sur ton écran.
+2. Répéter defence-script.md à voix haute, avec un chronomètre : deux minutes maximum.
+3. Maîtriser les questions de defence-qa.md, surtout Sharpe/alpha, DSR, placebos, les décisions d'Elastic Net, les coûts et la portée des permutations.
+4. Mettre cette copie finale complète à disposition via le dépôt/format accepté pour la remise et vérifier l'accès du correcteur. L'ancien dépôt en ligne ne se met pas à jour automatiquement.
+5. Déposer le manuscrit et la présentation dans les devoirs Blackboard avant l'heure officielle de la session 13.
 
-## 2. Reconstruire les exports qui demandent matplotlib
-
-Depuis la racine, avec le `.venv` activé :
-
-```bash
-python -B capstone/build_capstone.py
-```
-
-```bash
-python -B capstone/build_presentation.py
-```
-
-Le premier régénère aussi `results.csv`, les figures et le Word, avec les mêmes chiffres.
-Le second produit `presentation-backup.pptx`, qui contient encore l'ancienne version tant qu'il
-n'est pas reconstruit.
-
-## 3. Optionnel : drawdown et turnover
-
-La grille cite le drawdown et le turnover, que les rapports ne publient pas. Les calculer serait
-une analyse descriptive nouvelle, après résultats : à faire seulement si tu l'assumes, en le
-déclarant comme tel dans le manuscrit. Sinon, la limite est déjà écrite en section 4.
-
-## 4. Contrôles personnels
-
-- Ouvrir `manuscript.docx` dans Word et `presentation.pptx` dans PowerPoint : mise en page,
-  police Aptos, titres sur une ligne.
-- Chronométrer `defence-script.md` à voix haute : moins de 2 minutes.
-- Savoir expliquer seul les questions 20 à 24 de `defence-qa.md` (coûts, DSR, placebos,
-  drawdown, déploiement), ainsi que les 17 décisions d'Elastic Net.
-- Vérifier les cinq références sur tes propres copies.
-- Déposer les deux devoirs Blackboard (manuscrit avec le lien GitHub, présentation) avant le début
-  de la session 13.
+Le résultat d'une évaluation dépend du correcteur et de ta maîtrise du travail ; aucun agent ne peut attribuer ou garantir la note. Les limites de reproduction et les statistiques absentes restent explicitement déclarées, pas masquées.

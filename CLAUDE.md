@@ -1,9 +1,10 @@
-# Instructions de reprise dans Claude Code en ligne
+# Final capstone workspace
 
-Lis CLAUDE-ONLINE-START.md en entier avant toute action.
-Le dossier autorisé est le dépôt cloud courant, pas le chemin historique du Mac.
-Cette copie sert à la relecture et aux livrables, jamais à relancer des expériences.
-Aucune modification de nombres, de cartes, de rapports ou de données archivées.
-Aucun entraînement, backtest, notebook exécuté, téléchargement ou installation.
-Les anciens briefings sont historiques et ne sont pas une liste de tâches à faire.
-Première étape : lecture seule, vérification des fichiers et compte rendu en français.
+Read README.md and instructions/AI_for_Finance_Capstone_Guidelines.pdf before edits.
+The current report follows the official 2000–3000 word limit; the defence is at most two minutes.
+The long presentation is backup material only.
+The framework and frozen snapshots are now supplied; older transfer notes in handoff/ describe an incomplete earlier copy.
+Do not execute or rerun a strategy, notebook, model fit, forecast diagnostic or portfolio analysis.
+Do not change recorded figures, cards, registry or snapshots. Reproduce documents only with python -B reproduce.py.
+Communicate with Anas in French and keep academic deliverables in English.
+Do not publish, merge or push without an explicit instruction. Preserve prior-work and GenAI disclosures.

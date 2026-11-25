@@ -1,59 +1,79 @@
-# Do machine-learning trend signals survive strict validation?
+# AI for Finance — final capstone
 
-AI for Finance — individual capstone (Type A), Anas Chantah, Master in Finance, IE Business School.
+Anas Chantah · Master in Finance, IE Business School · Type A application
 
-Machine-learning forecasts (Elastic Net, Random Forest, Gradient Boosting, plus OLS, logistic
-regression and an MLP as diagnostics) replace the monthly entry decision of a time-series momentum
-rule on seven ETFs. Every strategy faces a seven-gate validation battery: costs, shifted-timing
-placebos, a deflated Sharpe ratio for multiple testing, stability, robustness and a sealed 2023–2025
-holdout. **No tested strategy passes all seven gates.**
+**Financial objective:** assess whether learned monthly entry signals add validated, cost-adjusted value to a seven-ETF allocation relative to passive holding and a fixed trend rule. No tested strategy passes all seven validation gates.
+
+## Open these deliverables
 
 | Deliverable | File |
 |---|---|
-| Manuscript (source / Word) | `capstone/manuscript.md`, `capstone/manuscript.docx` |
-| Two-minute defence (4 slides, speaker notes) | `capstone/presentation.pptx`, `capstone/defence-script.md` |
-| Backup slides for questions (15 slides) | `capstone/presentation-backup.pptx`, `capstone/presentation-outline.md` |
-| Question preparation | `capstone/defence-qa.md` |
-| All strategy results | `capstone/results.csv`, `capstone/costs-robustness.csv` |
-| Forecast diagnostic | `capstone/diagnostics/` (report, CSV metrics, figures) |
-| Provenance of every table and figure | `capstone/results-notes.md` |
-| Strategy cards, code and executed reports | `alpha-lab/strategies/<card>/` |
+| Final manuscript | `capstone/manuscript.docx` |
+| Manuscript source | `capstone/manuscript.md` |
+| Main defence — four slides, maximum two minutes | `capstone/presentation.pptx` |
+| Spoken text and slide notes | `capstone/defence-script.md` |
+| Fifteen-slide backup for questions | `capstone/presentation-backup.pptx` |
+| Twenty-four preparation questions | `capstone/defence-qa.md` |
+| Numerical provenance | `capstone/results-notes.md` |
+| Compliance and integrity audit | `capstone/verification-report.json` |
+| Official requirements | `instructions/AI_for_Finance_Capstone_Guidelines.pdf` and `instructions/AI_for_Finance_Capstone_Rubric.pdf` |
 
-## Reproducing the manuscript from the saved results
+The deadline is the official start time of Session 13, as stated in the official guidelines. The exact calendar time must be taken from the course submission task.
 
-Every table and figure in the manuscript is generated from the executed report notebooks in
-`alpha-lab/strategies/*/report.ipynb` and the diagnostic outputs in `capstone/diagnostics/`. These
-steps read saved outputs only; they run no strategy and need no market data. From the repository root:
+## One-command saved-output reconstruction
+
+With the documented packages already available, run from this directory:
 
 ```sh
-python -m pip install -r requirements-docs.txt
-python -B capstone/extract_costs.py        # Table 3: costs, calendar blocks, DSR (cells 12, 16, 18, 20)
-python -B capstone/build_capstone.py       # results.csv, Table 2, Figures 1, 5, 6 and manuscript.docx
-python -B capstone/export_docx.py          # manuscript.docx alone (python-docx only)
-python -B capstone/build_defence.py        # two-minute presentation.pptx and defence-script.md
-python -B capstone/build_presentation.py   # fifteen-slide backup deck and its outline
+python -B reproduce.py
 ```
 
-`build_capstone.py` and `build_presentation.py` also draw charts with matplotlib and expect it in a
-repository-local `.venv` (see `capstone/local_plotting.py`); `extract_costs.py`, `export_docx.py`
-and `build_defence.py` run with the packages in `requirements-docs.txt` alone.
+The command checks the input hashes, transcribes financial tables from the executed notebooks, redraws the manuscript figures from saved results and diagnostic CSVs, exports the Word, rebuilds both decks, and audits every numerical table against its sources. It performs **no download, installation, model fitting, forecasting, strategy execution, portfolio calculation or holdout reopening**.
 
-## Reproducing the experiments
+`verify_submission.py` can also be run alone. Its JSON report gives the abstract and body word counts, slide counts, spoken word count, integrity checks and scope. The estimated speaking time assumes 140 words per minute; a personal timed rehearsal is still needed. The body is checked both excluding and including references, to avoid relying on an ambiguous count convention.
 
-The strategies were executed by Alpha Factory, a pre-existing validation framework co-founded with
-Sami Andaloussi before the course (https://github.com/Sami-Andaloussi/alpha-factory), on a frozen
-Yahoo Finance snapshot identified by hash in `alpha-lab/data/manifest.json`. Each card in
-`alpha-lab/strategies/` contains its locked hypothesis (`card.yaml`), reasoning, build plan,
-strategy code (`strategy.py`) and the executed report (`report.ipynb`) with its saved outputs.
+## Dependencies and portability
 
-This repository does not yet contain the framework's runner (`alpha-lab/lab/`), its tests, the
-pinned experiment environment or the market data, so the backtests and the forecast diagnostic
-(`capstone/diagnostics/diagnostics.py`) cannot be re-executed from this repository alone. With the
-framework, the data snapshot and its environment, a card is run with
-`python -m lab.report strategies/<card>` from `alpha-lab/`, as described in `alpha-lab/RUNBOOK.md`.
-Each card's holdout is opened once, so re-running a recorded card is refused by design.
+The document workflow was exercised with the existing Python 3.14 environment. `requirements-docs.txt` pins the document/figure libraries actually used; `alpha-lab/requirements.txt` preserves the experiment dependencies unchanged. `requirements.txt` references both. On an independently authorised clean machine, an assessor can create an environment and install these pinned dependencies before running the command above. No installation was performed during this finalisation.
 
-## Use of generative AI
+The builders use the active Python environment and repository-local `.build-cache/` paths. They no longer require the absolute path or `.venv` location from Anas's Mac. A second build is checked in an isolated directory with the same installed environment; that is a portability check, not proof of a clean installation on another machine.
 
-Claude and OpenAI Codex were used for coding and drafting, as disclosed in the manuscript (Annex A).
-The author reviewed and takes responsibility for all content.
+## Research inputs now supplied
+
+The earlier cloud transfer deliberately contained only documentary inputs. This final local package additionally supplies:
+
+- the complete tracked `alpha-lab/` source, tests, templates, bank and immutable trial registry;
+- all locked cards and executed reports, including historical failures and unrun identifiers;
+- both original frozen snapshot folders named in `alpha-lab/data/manifest.json`, copied as opaque files and verified against their original hashes;
+- the original MIT licence and copyright attribution to Sami Andaloussi;
+- `RESEARCH-INPUTS.sha256.json`, identifying the frozen inputs and both provenance commits.
+
+The snapshots are archived inputs, not a fresh download. They are never parsed by the default reconstruction command; only their byte hashes are checked. No new holdout statistic is computed. The local package has not been uploaded or published automatically. The software licence is preserved and does not purport to define third-party data-use rights.
+
+## Reproduction scope — distinguish two claims
+
+**Verified here:** reconstructing the submitted tables, figures, Word and slides from the archived published outputs, and checking their provenance against the frozen source records. The full code and frozen inputs are supplied for inspection.
+
+**Not performed here:** an independent re-estimation of all forecasts or a fresh run of the financial experiments. The original runner locks completed cards and opens each holdout once. The missing historical reference commit `9a00fbb` also still prevents the official paired comparison. Do not delete the registry, alter lock checks, rewrite Git history or claim that those limitations have been repaired.
+
+`capstone/diagnostics/diagnostics.py` and the original lab remain research source, not part of the default build. Running them would be a new execution requiring separate authorisation. No script for re-downloading revised Yahoo prices is substituted for the frozen data vintage.
+
+## Mapping reported evidence to code
+
+| Report item | Source / reconstruction |
+|---|---|
+| Table 1 — validation criteria | Existing lab battery and RUNBOOK; text in manuscript |
+| Table 2 — strategy outcomes | Saved notebook cells 12, 14, 22 and 24; `build_capstone.py` |
+| Table 3 — costs, stability, DSR | Saved cells 12, 16, 18 and 20; `extract_costs.py` |
+| Table 4 — forecast evaluation | Frozen `forecast-metrics.csv` and `summary.json`; no metric re-estimation |
+| Figures 1, 5 and 6 | Saved notebook outputs; `build_capstone.py` |
+| Figures 2, 3 and 4 | Saved diagnostic CSVs; `render_saved_figures.py` |
+| Short defence | `build_defence.py` |
+| Backup defence and importance chart | `build_presentation.py` |
+| Word export | `export_docx.py` |
+
+The coefficient/importance plots use the published, rounded CSV display records. The reported forecast accuracy statistics remain the original pre-rounding calculations; they are not recalculated from the rounded observations. Logistic return R² remains n/a.
+
+## Attribution and individual accountability
+
+Alpha Factory is pre-existing work co-founded with Sami Andaloussi and used as the evaluation tool. Anas's graded contribution is the ML layer, diagnostics, follow-up hypotheses, experiments and analysis. The manuscript retains the Claude/OpenAI Codex disclosure. Original research inputs are unchanged; final changes concern interpretation, packaging and document reconstruction. Anas remains responsible for understanding and defending the submission.

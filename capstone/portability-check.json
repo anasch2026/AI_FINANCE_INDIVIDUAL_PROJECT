@@ -1,0 +1,17 @@
+{
+  "scope": "Same installed Python environment, separate directory, PYTHONPATH empty; no installation or experiment execution.",
+  "reconstruction_success": true,
+  "byte_identical_outputs": [
+    "capstone/results.csv",
+    "capstone/costs-robustness.csv",
+    "capstone/source-hashes.json",
+    "capstone/diagnostics/01-forecast-quality.png",
+    "capstone/diagnostics/03-elastic-net-coefficients.png",
+    "capstone/diagnostics/06-permutation-importances.png",
+    "capstone/figures/01-gates.png",
+    "capstone/figures/02-in-sample.png",
+    "capstone/figures/04-holdout.png"
+  ],
+  "experiments_rerun": false,
+  "clean_dependency_install_tested": false
+}

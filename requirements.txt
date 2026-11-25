@@ -1,0 +1,3 @@
+# Full archived research plus document dependencies; no installation performed during finalisation.
+-r alpha-lab/requirements.txt
+-r requirements-docs.txt

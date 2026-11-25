@@ -1,0 +1,32 @@
+Frozen inputs verified; no market values interpreted.
+DOCUMENT BUILD: capstone/extract_costs.py
+Wrote capstone/costs-robustness.csv with 7 published rows.
+DOCUMENT BUILD: capstone/render_saved_figures.py
+Rebuilt diagnostic figures from archived CSVs; no data loading or estimation.
+DOCUMENT BUILD: capstone/build_capstone.py
+Built results.csv, results-notes.md, four sourced PNG charts; exported DOCX if manuscript exists.
+DOCUMENT BUILD: capstone/build_presentation.py
+Saved presentation-backup.pptx with 15 slides and speaker notes.
+DOCUMENT BUILD: capstone/build_defence.py
+Saved presentation.pptx with 4 slides and defence-script.md.
+DOCUMENT BUILD: preview_defence.py
+Saved four labelled slide-content previews; font-substitution scope documented.
+DOCUMENT BUILD: verify_submission.py
+{
+  "abstract_words": 211,
+  "body_words_excluding_abstract_tables_captions_references_annexes": 2240,
+  "body_with_references": 2344,
+  "spoken_words": 226,
+  "assumed_delivery_words_per_minute": 140,
+  "estimated_minutes_at_assumed_rate": 1.61,
+  "manuscript_tables": 4,
+  "manuscript_figures": 6,
+  "defence_slides": 4,
+  "backup_slides": 15,
+  "research_input_files_verified": 718,
+  "checks_passed": 779,
+  "experiments_rerun": false,
+  "new_financial_metrics_computed": false,
+  "scope": "Saved-output reconstruction and consistency audit; not fresh-environment re-estimation or a guaranteed grade."
+}
+Saved-output reconstruction complete. No experiment or diagnostic estimator was rerun.

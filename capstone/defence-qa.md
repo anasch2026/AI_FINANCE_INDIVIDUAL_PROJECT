@@ -78,11 +78,11 @@ Impurity importance describes training splits, while permutation asks whether an
 
 ## 20. Could transaction costs explain the ML failures?
 
-No. The published annual cost drag is 0.04% to 0.30% (Table 3). The ML strategies' gross Sharpe ratios, before any cost, are 0.31, 0.09 and 0.12 against a benchmark of 0.39, so they lack an edge before trading. The ensembles do trade more than the rule (0.13% and 0.19% of annual costs against 0.08%), without a matching return.
+No. The published annual cost drag is 0.04% to 0.30% (Table 3). The ML strategies' gross Sharpe ratios, before any cost, are 0.31, 0.09 and 0.12 against a benchmark of 0.39, so they lack an edge before trading. The ensembles have greater annual cost drag than the rule (0.13% and 0.19% against 0.08%), without positive net alpha; cost drag is not a direct turnover statistic.
 
 ## 21. Explain the deflated Sharpe ratio in one breath.
 
-It is the probability that a strategy's benchmark-hedged Sharpe ratio beats what the best of all registered trials would reach by luck, allowing for skewness and fat tails. TM-017-10's DSR of 0.27 means that, after 88 trials, its result is far from the 0.90 the battery requires.
+It is the probability that a strategy's benchmark-hedged Sharpe ratio beats what the best of all registered trials would reach by luck, allowing for skewness and fat tails. TM-017-10's DSR of 0.27 means that, after 88 trials, its result is far from the 0.90 the battery requires. This is a model-based, selection-adjusted statistic, not a posterior probability that the strategy will be profitable.
 
 ## 22. What exactly are the shifted placebos?
 
@@ -90,10 +90,10 @@ Each placebo shifts the strategy's own weight history in time by a different off
 
 ## 23. Why do you report no maximum drawdown or turnover?
 
-The lab's saved reports do not publish them, and I did not compute new performance statistics outside the official runs. Annual cost drag is the published measure that moves with turnover. I state this limitation in Section 4 rather than adding unlocked calculations after seeing the results.
+The lab's saved reports do not publish them, and I did not compute new performance statistics outside the official runs. Annual cost drag describes the cost burden; it is not a published turnover measurement. I state this limitation in Section 4 rather than adding unlocked calculations after seeing the results.
 
 ## 24. What would you need before deploying any of these strategies?
 
-A strategy that passes all seven gates first, then untouched data such as live paper trading, because the 2023–2025 holdout has already been seen. In production I would need model-risk governance in the spirit of SR 11-7 (independent validation, documentation, monitoring), and MiFID II algorithmic-trading controls if orders were automated. Monitoring would have to detect failures such as Elastic Net collapsing to a constant forecast.
+A strategy that passes all seven gates first, then untouched data such as live paper trading, because the 2023–2025 holdout has already been seen. Production would require a jurisdiction- and activity-specific compliance assessment, documented model governance, independent validation and order controls; I have not established regulatory readiness. Monitoring would have to detect failures such as Elastic Net collapsing to a constant forecast.
 
 Sources: original and new report.ipynb files identified in results.csv; diagnostic tables and summary.json; unchanged strategy.py files for implementation details; new card.yaml and reasoning.md; capstone/results-notes.md for the full mapping and STOPPED.md for the comparison refusal. No additional performance test is introduced in these answers.

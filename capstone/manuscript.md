@@ -20,6 +20,8 @@ Machine learning is a reasonable candidate. Gu, Kelly and Xiu (2020) show that f
 
 The research question is whether ML signals survive strict out-of-sample validation where the rule-based strategy fails. My answer is negative for every implementation tested.
 
+The operational decision is whether to approve a timing overlay for further investment review. A higher historical Sharpe alone is insufficient when the apparent gain may reflect passive exposure or repeated searching. I therefore treat rejection as an economically useful decision: it prevents an unsupported model from being promoted on its backtest alone, without assigning a monetary saving that I have not measured.
+
 ## 2 Data and Methodology
 
 ### 2.1 Data and preprocessing
@@ -34,11 +36,11 @@ Missing history is handled explicitly. DBC starts trading on 2006-02-06, so its 
 
 Each fund contributes eight features from its own lagged closes: returns over 21, 63, 126 and 252 sessions; 12–1 momentum (252 to 21 sessions back); annualised volatility over 63 and 126 sessions; and the distance of the latest close from its 200-session average. All end at the session before the monthly decision. The target is the fund's return over the bill until the session before the next decision.
 
-Three controls address look-ahead bias and leakage. A training label enters only after its month is complete. Standardisation uses the rolling estimation window only. The lab's hygiene gate samples decision dates to confirm that no target reads same-day or future prices, and verifies that scrambling prices older than the declared 2,400-session memory leaves every target unchanged. Non-stationarity is handled by the rolling 60-month window, which lets relationships drift, and by robustness windows of 30, 45, 75 and 90 months.
+Three controls address look-ahead bias and leakage. A training label enters only after its month is complete. Standardisation uses the rolling estimation window only. The lab's hygiene gate samples decision dates to confirm that no target reads same-day or future prices, and verifies that scrambling prices older than the declared 2,400-session memory leaves every target unchanged. I respond to non-stationarity with the rolling 60-month window, which lets relationships drift, and by robustness windows of 30, 45, 75 and 90 months.
 
 ### 2.3 Models and validation strategy
 
-Fund-months are pooled and the model is refitted on the first session of each month. Each fund with a positive forecast receives one seventh of the portfolio; otherwise that seventh stays in cash. Forecast magnitude never changes position size. Keeping the funds, schedule and allocation identical to the plain rule isolates the decision being tested: any difference in performance comes from when a fund is held, not from leverage or concentration. Pooling across funds is a deliberate response to data scarcity, since a single fund supplies only one labelled observation per month.
+Fund-months are pooled and the model is refitted on the first session of each month. Each fund with a positive forecast receives one seventh of the portfolio; otherwise that seventh stays in cash. Forecast magnitude never changes position size. Keeping the funds, schedule and allocation rule fixed makes entry timing the intended experimental change; effective windows and exposure paths still differ, so this is not a causal performance estimate. Pooling across funds is a deliberate response to data scarcity, since a single fund supplies only one labelled observation per month.
 
 Elastic Net uses ElasticNetCV with L1 shares 0.10, 0.50 and 0.90 and 20 logarithmically spaced penalties from 10^-4 to 1, selected by a three-fold TimeSeriesSplit inside each window. Random Forest uses 200 trees of depth 3, at least 20 observations per leaf, feature fraction 0.50 and random state 0. Gradient Boosting uses 150 trees of depth 2, learning rate 0.03, subsampling 0.70 and at least 20 observations per leaf.
 
@@ -66,13 +68,15 @@ After the ML failures, I diagnose forecast quality without changing any setting 
 
 R² compares forecast squared error with that of a zero forecast. Monthly rank IC is the cross-sectional Spearman correlation between forecasts and next-month returns, with a Newey–West t statistic. The classifier is judged by sign accuracy, AUC and log-loss. Because the plain rule gives a sign, not a return, its R² uses a mechanical proxy: its trailing excess return divided by twelve. Permutation importance measures the increase in next-month squared error when one feature is shuffled.
 
-I then pre-specify economic follow-ups instead of re-tuning a failed model. MR-001-01 buys a fund after its 21-session return falls below the bill, the liquidity-provision mechanism of short-term reversal (Nagel, 2012). MR-001-02 applies that rule only when SPY's 63-session volatility exceeds its preceding 756-observation median. TM-017-09 weights trend positions by inverse 63-session volatility across all tradable funds. Each card is locked before its code and run once.
+I then pre-specify economic follow-ups instead of re-tuning a failed model. MR-001-01 buys a fund after its 21-session return falls below the bill, the liquidity-provision mechanism of short-term reversal (Nagel, 2012). MR-001-02 applies that rule only when SPY's 63-session volatility exceeds its preceding 756-observation median. TM-017-09 weights trend positions by inverse 63-session volatility across all tradable funds. Each card is locked before its code; each executed card runs once, while an unimplementable specification is skipped.
+
+The accompanying reconstruction pipeline reads saved notebook tables and diagnostic CSVs, rebuilds the reported tables and figures, and exports the manuscript and defence. It verifies the frozen source files by hash. The package also supplies the framework, tests, dependencies and unchanged snapshot files that were absent from the earlier documentary transfer. This finalisation does not re-estimate a model, recalculate portfolio returns or reopen a holdout. Rebuilding an archived report is distinct from independently repeating its original experiment; I do not claim a fresh-environment backtest replication. The missing historical reference commit still prevents the official paired comparison, even with the current framework supplied.
 
 ## 3 Empirical Results
 
 ### 3.1 Benchmark comparison
 
-Table 2 transcribes the published outcomes. Relative to the simpler rule, the ML layer adds no value: every ML strategy has a lower Sharpe ratio and a negative alpha, and each fails at an earlier gate. The windows and threshold versions differ, and the official paired comparison is unavailable because the reference run's commit 9a00fbb is missing; I therefore make no claim of statistical superiority.
+Table 2 transcribes the published outcomes. On their recorded windows, all ML strategies have lower Sharpe ratios and negative alphas, and each fails at an earlier gate than the simpler rule. The windows and threshold versions differ, and the official paired comparison is unavailable because the reference run's commit 9a00fbb is missing; I therefore make no claim of statistical superiority.
 
 Table 2. Published strategy outcomes; unequal effective in-sample windows.
 
@@ -93,7 +97,7 @@ Elastic Net first fails hygiene: it produces 17 clustered decisions against 30 r
 
 ### 3.2 Costs and robustness across time
 
-Table 3 transcribes the cost and stability metrics from the same reports. Annual cost drag ranges from 0.04% to 0.30%, so trading costs do not explain the failures: the ML strategies' gross Sharpe ratios are already below their benchmarks. The ensembles' cost drag (0.13% and 0.19%) is higher than the rule's 0.08%, which indicates more frequent trading without a matching return.
+Table 3 transcribes the cost and stability metrics from the same reports. Annual cost drag ranges from 0.04% to 0.30%, so trading costs do not explain the failures: the ML strategies' gross Sharpe ratios are already below their benchmarks. The ensembles' cost drag (0.13% and 0.19%) is higher than the rule's 0.08%, which indicates a larger trading-cost burden without positive net alpha.
 
 Table 3. Published costs, calendar stability and selection adjustment.
 
@@ -125,7 +129,7 @@ Table 4. Pre-2023 forecast evaluation; classifier R² is not reported.
 | MLP | -15.73 | -0.07 | -1.68 | 142 | 45.98 | — | — |
 | Plain rule proxy | -8.03 | 0.06 | 1.13 | 142 | 52.41 | — | — |
 
-*R² is not defined for a binary target; the logistic model is judged by accuracy, AUC and log-loss. Its IC uses probabilities against subsequent return ranks.
+*Here R² denotes forecast accuracy in return units, so it is not applicable to the logistic probability forecast. I judge that model by accuracy, AUC and log-loss; its IC uses probabilities against subsequent return ranks.
 
 ![Figure 2. Forecast accuracy and rank information; the rule's R² uses a mechanical monthly proxy.](diagnostics/01-forecast-quality.png)
 
@@ -135,7 +139,7 @@ Errors concentrate in regime changes. In 2022, when equities and Treasuries fell
 
 ![Figure 3. Elastic Net coefficient histories, in return basis points per feature standard deviation.](diagnostics/03-elastic-net-coefficients.png)
 
-The ensembles trade more but learn unstable relationships. Their training importances are persistent (adjacent rank correlations 0.82 and 0.79), yet following-month permutation importance is negative for most features: shuffling them improves next-month error. 63-session volatility is the only feature with positive mean importance in both ensembles, and the MLP shows mixed signs. These noisy descriptive means are neither significance tests nor causal effects.
+The ensembles produce more distinct target changes, but their fitted relationships do not transfer reliably to later observations. Their training importances are persistent (adjacent rank correlations 0.82 and 0.79), yet following-month permutation importance is negative for most features: shuffling them improves next-month error. 63-session volatility is the only feature with positive mean importance in both ensembles, and the MLP shows mixed signs. These noisy descriptive means are neither significance tests nor causal effects.
 
 ![Figure 4. Training impurity importance and following-month permutation importance, with refit dispersion.](diagnostics/06-permutation-importances.png)
 
@@ -155,15 +159,15 @@ Elastic Net's holdout Sharpe of 0.91 exceeds the rule's 0.89, yet its alpha is s
 
 ## 4 Conclusion and Implementation Risks
 
-The answer to my research question is negative for these implementations. The ML layer does not improve on the plain trend rule: its strategies have lower Sharpe ratios, negative alphas and weaker calendar stability, and their forecasts are worse than a zero forecast. The best economic follow-up, TM-017-10, has the strongest recorded economics, but significance and selection tests reject it. The evidence separates three objects that are easily confused: persistent training importance, forecast accuracy and validated portfolio value.
+The answer to my research question is negative for these implementations. The recorded ML strategies have lower Sharpe ratios, negative alphas and weaker calendar stability than the reference on their respective windows; their return forecasts also have negative R² against zero. The best economic follow-up, TM-017-10, has the strongest recorded economics, but significance and selection tests reject it. The evidence separates three objects that are easily confused: persistent training importance, forecast accuracy and validated portfolio value.
 
 Overfitting and selection are the first deployment risk. The registry contains 88 trials by the last run, and every additional trial raises the bar for the next. I also saw the earlier holdout results before designing the follow-ups, so they are exploratory rather than independent confirmation. A credible deployment case would need new, untouched data, for example a period of live paper trading.
 
-Data limitations are the second. Seven correlated funds offer few independent bets, and one vendor's adjusted prices are a single measurement of history. The ML window starts only in 2011. Effective windows and threshold versions differ across strategies, and the official paired test against the rule is unavailable. The lab reports publish costs but neither maximum drawdown nor turnover; annual cost drag is the only turnover measure used here. Elastic Net standardises before its inner cross-validation and the MLP uses a random early-stopping split, which weakens their internal model selection.
+Data limitations are the second. Seven correlated funds offer few independent bets, and one vendor's adjusted prices are a single measurement of history. The ML window starts only in 2011. Effective windows and threshold versions differ across strategies, and the official paired test against the rule is unavailable. The lab reports publish costs but neither maximum drawdown nor turnover; annual cost drag measures the cost burden, not turnover, so neither missing statistic is claimed. Elastic Net standardises before its inner cross-validation and the MLP uses a random early-stopping split, which weakens their internal model selection. Pooled row boundaries can also split funds from the same month across inner folds. These qualifications affect internal selection; they do not justify changing a completed card after seeing its outcome.
 
-Computational cost is modest for prediction: each strategy refits small models monthly on a pooled 60-month window. Validation dominates, because each robustness neighbour repeats the full refitting history. This cost is worth paying, since it is what exposed the failures.
+Computational demands come from monthly refitting on pooled 60-month windows and repetition across robustness neighbours. The models and bounded windows limit problem size, but I have not benchmarked runtime, latency or monetary compute cost. Operational planning would require those measurements before deployment.
 
-Regulatory considerations reinforce the conclusion. Supervisory model-risk guidance such as the US Federal Reserve and OCC's SR 11-7 requires independent validation, documentation and ongoing monitoring; an Elastic Net that silently collapses to an intercept is exactly what monitoring must detect. Automated order generation in the EU would fall under MiFID II's algorithmic-trading controls. Presenting a selected backtest as expected performance would mislead investors, which is why every failed and unrun specification is kept in the record. I would not deploy any tested strategy.
+Regulatory readiness has not been established. Before deployment, the responsible institution would need to assess applicable investment-services and trading rules, data-use rights, model governance and order controls for its actual jurisdiction and activity. Documentation, independent review and monitoring should expose failures such as an estimator collapsing to an intercept. This project is a research prototype, not a legal-compliance assessment or a production trading system. I would not deploy any tested strategy.
 
 ## References
 
@@ -183,4 +187,4 @@ Alpha Factory is a pre-existing framework I co-founded with Sami Andaloussi befo
 
 ## Annex B — Research record
 
-Cards TM-017-03 to TM-017-05 were retired unrun after an administrative locking error; TM-017-06 to TM-017-08 carry the same hypotheses. Each card was committed alone before its code and run once, and its registry entry was committed alone before its report. I saw the completed 06–08 holdouts before designing MR-001-01, and its holdout before fixing the two later rules. Four follow-up cards were specified: three have financial trials and TM-017-09 remains unrun. The forecast-only extension adds no portfolio trial. The diagnostic records 15 Elastic Net convergence warnings. Every table and figure is traced to its source file in capstone/results-notes.md.
+Cards TM-017-03 to TM-017-05 were retired unrun after an administrative locking error; TM-017-06 to TM-017-08 carry the same hypotheses. Every new capstone card that reached a financial run was committed alone before its code; its registry entry was committed alone before its report. I saw the completed 06–08 holdouts before designing MR-001-01, and its holdout before fixing the two later rules. Four follow-up cards were specified: three have financial trials and TM-017-09 remains unrun. The forecast-only extension adds no portfolio trial. The diagnostic records 15 Elastic Net convergence warnings. Every table and figure is traced to its source file in capstone/results-notes.md.

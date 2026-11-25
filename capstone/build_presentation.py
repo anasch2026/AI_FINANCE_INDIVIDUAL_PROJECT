@@ -182,7 +182,7 @@ t=table(s,['Model','R² (%)','Rank IC','IC t','Hit (%)','AUC','Log-loss'],metric
 for row in t.rows:
     for cell in row.cells:
         for paragraph in cell.text_frame.paragraphs:paragraph.font.size=Pt(16)
-text(s,'*R² is not defined for a binary target; the logistic model is judged by accuracy, AUC and log-loss.',0.8,6.5,11.8,0.4,size=15,color=GRAY)
+text(s,'*Return R² is n/a for logistic probabilities; accuracy, AUC and log-loss evaluate the classifier.',0.8,6.5,11.8,0.4,size=15,color=GRAY)
 
 s=slide('Elastic Net mostly learns a pooled intercept',
         'diagnostics/03-elastic-net-coefficients.png; summary.json; decision-behaviour.csv.',

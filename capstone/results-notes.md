@@ -145,3 +145,10 @@ inside the cutoff, with ten repeats and random_state=0. Its units are the increa
 in next-month MSE in return basis points squared. Negative values mean shuffling
 improves error; training impurity importance is a different quantity. The new
 settings and evaluation protocol were committed before the diagnostic ran.
+
+
+## Final local reconstruction and interpretation corrections
+
+The final manuscript uses the official five-section structure and word limit. Trading-cost drag is not reported as turnover. Cross-window comparisons are descriptive; the same sizing rule does not establish a causal model effect. Regulatory readiness and runtime costs remain unassessed rather than asserted. The original reference entries and all numerical research outputs are unchanged.
+
+All six manuscript figures can be reconstructed from the archived notebook/CSV inputs: financial figures by build_capstone.py, diagnostic figures by render_saved_figures.py. The latter imports no lab code or estimator and uses no raw market values. Any rounded coefficient/importance display comes from its saved CSV; accuracy statistics are preserved rather than re-estimated. See the root README for the distinction between document reconstruction and an independent experimental replication.

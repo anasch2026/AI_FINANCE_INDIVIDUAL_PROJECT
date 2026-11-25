@@ -15,7 +15,7 @@ import re
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "capstone"
-WORK = ROOT / ".git" / "capstone-build"
+WORK = ROOT / ".build-cache"
 WORK.mkdir(exist_ok=True)
 for name in ("MPLCONFIGDIR", "XDG_CACHE_HOME", "TMPDIR"):
     p = WORK / name.lower()
@@ -265,27 +265,12 @@ improves error; training impurity importance is a different quantity. The new
 settings and evaluation protocol were committed before the diagnostic ran.
 """)
 
-# Local-only font cache: never discover or read system/user fonts outside ROOT.
-mpl_dir = next((ROOT / ".venv/lib").glob("python*/site-packages/matplotlib"))
-font_source = (mpl_dir / "font_manager.py").read_text()
-font_version = re.search(r"__version__ = ['\"]([^'\"]+)", font_source)[1]
-entries = []
-for filename, style, weight in [("DejaVuSans.ttf", "normal", 400),
-                                ("DejaVuSans-Bold.ttf", "normal", 700),
-                                ("DejaVuSans-Oblique.ttf", "oblique", 400)]:
-    font = mpl_dir / "mpl-data/fonts/ttf" / filename
-    assert font.is_file() and font.resolve().is_relative_to(ROOT)
-    entries.append(dict(__class__="FontEntry", fname=str(font), index=0,
-                        name="DejaVu Sans", style=style, variant="normal",
-                        weight=weight, stretch="normal", size="scalable"))
-cache = dict(__class__="FontManager", _version=font_version,
-             _FontManager__default_weight="normal", default_size=None,
-             defaultFamily={"ttf": "DejaVu Sans", "afm": "Helvetica"},
-             afmlist=[], ttflist=entries)
-(Path(os.environ["MPLCONFIGDIR"]) / f"fontlist-v{font_version}.json").write_text(json.dumps(cache))
-rc = WORK / "matplotlibrc"
-rc.write_text("font.family: DejaVu Sans\nbackend: Agg\n")
-os.environ["MATPLOTLIBRC"] = str(rc)
+with (OUT / "results-notes.md").open("a") as f:
+    f.write('\n\n## Final local reconstruction and interpretation corrections\n\nThe final manuscript uses the official five-section structure and word limit. Trading-cost drag is not reported as turnover. Cross-window comparisons are descriptive; the same sizing rule does not establish a causal model effect. Regulatory readiness and runtime costs remain unassessed rather than asserted. The original reference entries and all numerical research outputs are unchanged.\n\nAll six manuscript figures can be reconstructed from the archived notebook/CSV inputs: financial figures by build_capstone.py, diagnostic figures by render_saved_figures.py. The latter imports no lab code or estimator and uses no raw market values. Any rounded coefficient/importance display comes from its saved CSV; accuracy statistics are preserved rather than re-estimated. See the root README for the distinction between document reconstruction and an independent experimental replication.\n')
+
+# Use the active environment and repository-local caches, without a Mac-specific .venv path.
+from local_plotting import configure
+configure()
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
