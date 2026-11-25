@@ -31,7 +31,7 @@ def text(slide,value,x,y,w,h,size=22,color=INK,bold=False):
     tf.margin_left=tf.margin_right=0
     for i,line in enumerate(value.split('\n')):
         p=tf.paragraphs[0] if i==0 else tf.add_paragraph()
-        p.text=line;p.font.name='Aptos';p.font.size=Pt(size);p.font.bold=bold;p.font.color.rgb=RGBColor.from_string(color)
+        p.text=line;p.font.name='Calibri';p.font.size=Pt(size);p.font.bold=bold;p.font.color.rgb=RGBColor.from_string(color)
         p.space_after=Pt(12)
     return box
 
@@ -123,7 +123,7 @@ def table(s,headers,values,y=2.0,height=3.4):
             cell.vertical_anchor=MSO_ANCHOR.MIDDLE
             cell.margin_left=Inches(0.12)
             for p in cell.text_frame.paragraphs:
-                p.font.name='Aptos';p.font.size=Pt(18);p.font.bold=i==0;p.font.color.rgb=RGBColor.from_string('FFFFFF' if i==0 else INK)
+                p.font.name='Calibri';p.font.size=Pt(18);p.font.bold=i==0;p.font.color.rgb=RGBColor.from_string('FFFFFF' if i==0 else INK)
     return t
 
 
@@ -172,16 +172,22 @@ chart(s,Path('diagnostics/01-forecast-quality.png'))
 
 s=slide('Six models, same verdict',
         'diagnostics/forecast-metrics.csv; diagnostics.py; all figures before 2023.',
-        'The shared scored sample and fixed protocol compare six learners and a rule proxy. OLS and MLP have negative return R squared, like the original regressors. Logistic regression predicts the probability of a positive return. R² is not defined for a binary target, so I judge the classifier by accuracy, AUC and log-loss, and all three are weak. The common conclusion is weak forecast evidence on this sample, not six failed trading cards. No new portfolio return, holdout evaluation or registry trial is produced by this extension.')
+        'The shared scored sample and fixed protocol compare six learners and a rule proxy. OLS and MLP have negative return R squared, like the original regressors. Logistic regression predicts the probability of a positive return. Return-unit R² is not applicable to a probability forecast, so I judge the classifier by accuracy, AUC and log-loss. They do not establish useful discrimination on this sample. The common conclusion is weak forecast evidence on this sample, not six failed trading cards. No new portfolio return, holdout evaluation or registry trial is produced by this extension.')
 metric_rows=[]
 for name in ['OLS','Elastic Net','Random Forest','Gradient Boosting','Logistic Regression','MLP','Plain rule proxy']:
     m=next(v for v in diagnostic['overall'] if v['model']==name)
     label={'Logistic Regression':'Logistic*','Gradient Boosting':'Boosting','Plain rule proxy':'Rule proxy'}.get(name,name)
     metric_rows.append([label,'n/a' if name=='Logistic Regression' else f"{m['r2_zero_pct']:.2f}",f"{m['rank_ic']:.2f}",f"{m['rank_ic_t_hac3']:.2f}",f"{m['sign_hit_pct']:.2f}",f"{m['auc']:.2f}" if m.get('auc') is not None else '—',f"{m['log_loss']:.2f}" if m.get('log_loss') is not None else '—'])
 t=table(s,['Model','R² (%)','Rank IC','IC t','Hit (%)','AUC','Log-loss'],metric_rows,y=1.5,height=4.9)
+for column, width in zip(t.columns, [2.6, 1.55, 1.55, 1.55, 1.55, 1.55, 1.55]):
+    column.width = Inches(width)
 for row in t.rows:
-    for cell in row.cells:
-        for paragraph in cell.text_frame.paragraphs:paragraph.font.size=Pt(16)
+    for column, cell in enumerate(row.cells):
+        cell.margin_right = Inches(0.12)
+        cell.text_frame.word_wrap = True
+        for paragraph in cell.text_frame.paragraphs:
+            paragraph.font.size=Pt(16)
+            paragraph.alignment = PP_ALIGN.LEFT if column == 0 else PP_ALIGN.CENTER
 text(s,'*Return R² is n/a for logistic probabilities; accuracy, AUC and log-loss evaluate the classifier.',0.8,6.5,11.8,0.4,size=15,color=GRAY)
 
 s=slide('Elastic Net mostly learns a pooled intercept',
@@ -190,7 +196,7 @@ s=slide('Elastic Net mostly learns a pooled intercept',
 text(s,'76.92% zero-slope refits | 96.90% positive forecasts | 17 clustered decisions',0.8,1.35,11.8,0.55,size=19,color=BLUE,bold=True)
 chart(s,Path('diagnostics/03-elastic-net-coefficients.png'),y=2.0,height=4.55)
 
-s=slide('Only volatility has positive tree importance',
+s=slide('Only vol63 has positive mean permutation importance',
         'diagnostics/07-tree-permutation-importance.png; diagnostics/permutation-summary.csv; diagnostics/importance-stability.csv.',
         'The adjacent training-importance rank correlations remain 0.82 and 0.79, but persistence is not predictive skill. Following-month permutation evaluates a frozen model on only that next month’s seven observations. Most tree features have negative mean permutation importance; vol63 is the only positive mean for each ensemble. The MLP has mixed signs and large refit dispersion. Positive training impurity importance can coexist with worse future prediction. These are noisy descriptive means from the pre-2023 sample, not the holdout, and neither causal effects nor significance tests. No feature subset or new model setting is selected from it.\nBars are in thousands of basis points squared; teal marks vol63.')
 chart(s,tree_importance_chart(),y=1.35,height=5.40)

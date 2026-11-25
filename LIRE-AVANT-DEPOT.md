@@ -9,8 +9,8 @@ Cette copie est la version finale locale vérifiée, issue de la version Claude 
 5. Projet et reproduction : README.md, reproduce.py et les dossiers inclus.
 6. Preuves : CONFORMITE-CONSIGNES.md et capstone/verification-report.json.
 
-La reconstruction depuis les sorties archivées a été exécutée, y compris dans un dossier isolé. Les expériences n'ont pas été relancées. Les aperçus du PowerPoint utilisent une police de substitution et ne remplacent pas une vérification dans l'application de remise.
+La reconstruction depuis les sorties archivées a été exécutée, y compris dans un dossier isolé. Les expériences n'ont pas été relancées. Les dix pages du Word et les deux présentations ont aussi été rendues dans LibreOffice et inspectées lors de la dernière relecture.
 
-Le dépôt GitHub n'est pas modifié automatiquement par la préparation de cette archive. Pour y intégrer la version finale, importer cette archive sur la branche de travail et demander à Claude d'en intégrer le contenu, sans nouvelle exécution, en conservant les fichiers d'expérience identiques. Ne pas fusionner dans main ni faire de push forcé sans instruction.
+La version finale est publiée sur la branche principale du dépôt : https://github.com/anasch2026/AI_FINANCE_INDIVIDUAL_PROJECT. Utiliser cette page et les livrables qu’elle contient pour la remise ; les anciennes archives de transfert ne sont pas les documents à rendre.
 
 Avant Blackboard : ouvrir les deux fichiers principaux, répéter le texte oral en moins de deux minutes et vérifier que le correcteur peut accéder au projet complet. Le délai officiel est le début de la session 13.

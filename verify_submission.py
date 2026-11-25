@@ -45,6 +45,28 @@ def tables(text):
     return result
 
 
+def manuscript_paragraphs(text):
+    """Expected visible paragraphs, including captions but excluding table cells."""
+    lines=text.splitlines(); result=[]; i=0
+    while i<len(lines):
+        line=lines[i].strip()
+        if not line or line.startswith('|'):
+            i+=1; continue
+        if line.startswith('#'):
+            result.append(line.lstrip('#').strip())
+        elif line.startswith('!['):
+            result.append(re.match(r'!\[(.*?)\]\(',line)[1])
+        elif line.startswith('- '):
+            result.append(line[2:])
+        else:
+            block=[line]
+            while i+1<len(lines) and lines[i+1].strip() and not lines[i+1].startswith(('#','|','![','- ')):
+                i+=1; block.append(lines[i].strip())
+            result.append(' '.join(block))
+        i+=1
+    return result
+
+
 def main():
     checks=[]
     def check(condition,message):
@@ -100,10 +122,20 @@ def main():
     doc=Document(OUT/'manuscript.docx')
     check(len(doc.tables)==4 and len(doc.inline_shapes)==6,'Word contains four tables and six figures')
     check([[[c.text for c in r.cells] for r in t.rows] for t in doc.tables]==mt,'Word tables exactly match manuscript')
+    check([p.text for p in doc.paragraphs if p.text.strip()]==manuscript_paragraphs(text),'All Word prose and captions exactly match manuscript')
+    embedded=[hashlib.sha256(doc.part.related_parts[sh._inline.graphic.graphicData.pic.blipFill.blip.embed].blob).hexdigest() for sh in doc.inline_shapes]
+    check(embedded==[hashlib.sha256((OUT/p).read_bytes()).hexdigest() for _,p in figures],'All Word figures exactly match the cited saved PNGs')
     prs=Presentation(OUT/'presentation.pptx'); backup=Presentation(OUT/'presentation-backup.pptx')
     check(len(prs.slides)==4 and len(backup.slides)==15,'Four defence slides and fifteen backup slides')
     spoken=sum(len(s.notes_slide.notes_text_frame.text.split()) for s in prs.slides)
     check(spoken<=250 and all(s.notes_slide.notes_text_frame.text.strip() for s in prs.slides),'Concise spoken script and notes on all four slides')
+    script=(OUT/'defence-script.md').read_text()
+    check(all(s.notes_slide.notes_text_frame.text in script for s in prs.slides),'Spoken script matches all defence notes')
+    by_model={r['model']:r for r in recorded}; by_cost={r['model']:r for r in cost_rows}
+    slide_table=next(sh.table for sh in prs.slides[2].shapes if sh.has_table)
+    expected=[[m,by_model[m]['sharpe'],by_cost[m]['gross_sharpe'],by_model[m]['alpha_pct_pa'],by_model[m]['first_failed_gate']] for m in ['Plain rule','Elastic Net','Random Forest','Gradient Boosting']]
+    check([[c.text for c in row.cells] for row in list(slide_table.rows)[1:]]==expected,'Main defence financial table matches archived results')
+    check(all('R² is not defined for a binary target' not in s.notes_slide.notes_text_frame.text for s in backup.slides),'Backup notes distinguish return forecasts from classification probabilities')
     check(all(sh.left>=0 and sh.top>=0 and sh.left+sh.width<=prs.slide_width+3 and sh.top+sh.height<=prs.slide_height+3 for s in prs.slides for sh in s.shapes),'Defence elements within slide bounds')
     report={'abstract_words':len(abstract.split()),'body_words_excluding_abstract_tables_captions_references_annexes':body_words,'body_with_references':body_words+len(refs.split()),'spoken_words':spoken,'assumed_delivery_words_per_minute':140,'estimated_minutes_at_assumed_rate':round(spoken/140,2),'manuscript_tables':4,'manuscript_figures':6,'defence_slides':4,'backup_slides':15,'research_input_files_verified':len(manifest['files']),'checks_passed':len(checks),'experiments_rerun':False,'new_financial_metrics_computed':False,'scope':'Saved-output reconstruction and consistency audit; not fresh-environment re-estimation or a guaranteed grade.','checks':checks}
     (OUT/'verification-report.json').write_text(json.dumps(report,indent=2,ensure_ascii=False)+'\n')

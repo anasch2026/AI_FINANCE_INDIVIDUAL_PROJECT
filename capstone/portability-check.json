@@ -13,5 +13,7 @@
     "capstone/figures/04-holdout.png"
   ],
   "experiments_rerun": false,
-  "clean_dependency_install_tested": false
+  "clean_dependency_install_tested": false,
+  "latest_review": "2026-11-25",
+  "matching_checks_passed": 784
 }

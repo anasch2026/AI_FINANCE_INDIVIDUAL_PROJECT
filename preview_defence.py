@@ -76,7 +76,7 @@ def main():
     size=(800,450);montage=Image.new('RGB',(1600,900),'#E7EBEF')
     for i,im in enumerate(images):montage.paste(im.resize(size,Image.Resampling.LANCZOS),((i%2)*800,(i//2)*450))
     montage.save(OUT/'overview.png')
-    (OUT/'README.txt').write_text('Previews of actual slide objects using bundled DejaVu Sans in place of Aptos. Not a native PowerPoint/LibreOffice rendering.\n')
+    (OUT/'README.txt').write_text('Previews of actual slide objects using bundled DejaVu Sans in place of Calibri. Not a native PowerPoint/LibreOffice rendering.\n')
     print('Saved four labelled slide-content previews; font-substitution scope documented.')
 
 

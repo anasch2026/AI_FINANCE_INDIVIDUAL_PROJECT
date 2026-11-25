@@ -8,10 +8,10 @@ La licence MIT d'origine et le copyright de Sami Andaloussi sont conservés. Auc
 
 ## Ce qui reste personnellement à faire
 
-1. Ouvrir le Word et le PowerPoint finaux dans les applications utilisées pour la remise, afin de vérifier leur rendu natif sur ton écran.
+1. Utiliser les fichiers finaux sur main ; leur rendu LibreOffice a été inspecté. Si tu les ouvres dans une autre application, vérifier que celle-ci ne change pas leur mise en page.
 2. Répéter defence-script.md à voix haute, avec un chronomètre : deux minutes maximum.
 3. Maîtriser les questions de defence-qa.md, surtout Sharpe/alpha, DSR, placebos, les décisions d'Elastic Net, les coûts et la portée des permutations.
-4. Mettre cette copie finale complète à disposition via le dépôt/format accepté pour la remise et vérifier l'accès du correcteur. L'ancien dépôt en ligne ne se met pas à jour automatiquement.
+4. Fournir le lien du dépôt public final sur main : https://github.com/anasch2026/AI_FINANCE_INDIVIDUAL_PROJECT. Le code accompagne le manuscrit et la présentation ; il ne remplace pas leur dépôt dans les devoirs Blackboard.
 5. Déposer le manuscrit et la présentation dans les devoirs Blackboard avant l'heure officielle de la session 13.
 
 Le résultat d'une évaluation dépend du correcteur et de ta maîtrise du travail ; aucun agent ne peut attribuer ou garantir la note. Les limites de reproduction et les statistiques absentes restent explicitement déclarées, pas masquées.

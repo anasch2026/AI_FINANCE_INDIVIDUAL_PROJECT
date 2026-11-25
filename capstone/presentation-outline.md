@@ -54,7 +54,7 @@ Sources: diagnostics/01-forecast-quality.png; forecast-metrics.csv; diagnostics.
 
 Speaker notes:
 
-The shared scored sample and fixed protocol compare six learners and a rule proxy. OLS and MLP have negative return R squared, like the original regressors. Logistic regression predicts the probability of a positive return. R² is not defined for a binary target, so I judge the classifier by accuracy, AUC and log-loss, and all three are weak. The common conclusion is weak forecast evidence on this sample, not six failed trading cards. No new portfolio return, holdout evaluation or registry trial is produced by this extension.
+The shared scored sample and fixed protocol compare six learners and a rule proxy. OLS and MLP have negative return R squared, like the original regressors. Logistic regression predicts the probability of a positive return. Return-unit R² is not applicable to a probability forecast, so I judge the classifier by accuracy, AUC and log-loss. They do not establish useful discrimination on this sample. The common conclusion is weak forecast evidence on this sample, not six failed trading cards. No new portfolio return, holdout evaluation or registry trial is produced by this extension.
 
 Sources: diagnostics/forecast-metrics.csv; diagnostics.py; all figures before 2023.
 
@@ -66,7 +66,7 @@ All Elastic Net slopes are zero in 76.92 percent of monthly fits. When this happ
 
 Sources: diagnostics/03-elastic-net-coefficients.png; summary.json; decision-behaviour.csv.
 
-## Slide 9 — Only volatility has positive tree importance
+## Slide 9 — Only vol63 has positive mean permutation importance
 
 Speaker notes:
 
